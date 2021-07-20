@@ -4,6 +4,6 @@ class Owner < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
-  has_many :pets, dependent: :destroy
+  has_many :chinchillas, dependent: :destroy
   attachment :image
 end

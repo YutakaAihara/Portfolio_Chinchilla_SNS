@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  scope module: :public do
+    resource :owners, only: [:edit, :update]
+    get 'mypage' => 'owners#show'
+    resources :chinchillas
+    resources :posts
+    resources :hospitals
+    resources :questions
+  end
 
   devise_for :owners, controllers: {
     sessions:      'owners/sessions',
@@ -10,15 +18,6 @@ Rails.application.routes.draw do
     unlocks: 'owners/unlocks'
   }
 
-  scope module: :public do
-    resource :owners, only: [:edit, :update]
-    get 'mypage' => 'owners#show'
-    resources :chinchillas
-    resources :posts
-    resources :hospitals
-    resources :questions
-
-  end
   
   root to: 'homes#top'
   scope :home do

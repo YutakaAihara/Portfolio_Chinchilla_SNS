@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_20_083449) do
+ActiveRecord::Schema.define(version: 2021_07_20_131237) do
 
   create_table "chinchillas", force: :cascade do |t|
     t.string "name", null: false
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2021_07_20_083449) do
     t.string "name", null: false
     t.string "prefecture", null: false
     t.string "image_id"
+    t.text "introduction"
     t.index ["email"], name: "index_owners_on_email", unique: true
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end

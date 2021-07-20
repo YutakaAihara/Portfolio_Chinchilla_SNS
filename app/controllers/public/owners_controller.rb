@@ -11,12 +11,12 @@ class Public::OwnersController < ApplicationController
   def update
     owner = current_owner
     owner.update(owner_params)
-    redirect_to owner_path(owner)
+    redirect_to mypage_path
   end
   
   private
   
   def owner_params
-    params.require(:owner).permit(:name, :email, :prefecture, image)
+    params.require(:owner).permit(:name, :email, :prefecture, :image, :introduction)
   end
 end

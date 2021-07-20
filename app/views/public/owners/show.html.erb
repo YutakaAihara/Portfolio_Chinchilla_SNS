@@ -1,2 +1,10 @@
-<h1>Public::Owners#show</h1>
-<p>Find me in app/views/public/owners/show.html.erb</p>
+<h1><%= @owner.name %>さんのページ</h1> 
+<%= attachment_image_tag @owner, :image, :fill, 200, 200, fallback: "pf-images/profile_noimage.png", size: "200x200" %>
+<%= link_to "主さんの情報を変更する", edit_owners_path %>
+
+<h2><%= @owner.name %>さんちのチンチラさん</h2>
+<h3><%= link_to "新しい家族を追加", new_chinchilla_path %></h3>
+<% @owner.chinchillas.each do |chinchilla| %>
+  <%= chinchilla.name %>
+  <%= attachment_image_tag chinchilla, :image, :full, 150, 1500, fallback: "pf-images/photo_noimage.png", size: "150x150" %>
+<% end %>
