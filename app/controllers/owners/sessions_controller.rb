@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Owners::SessionsController < Devise::SessionsController
+  before_action :reject_owner, only: [:create]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -18,7 +19,20 @@ class Owners::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # protected
+
+  protected
+  
+  def reject_owner
+    @owner = Owner.find_by(email: params[:owner][:email].downcase)
+    if @owner
+      if @owner.valid_password?(params[:owner][:password]) && (@owner.active_for_authentication? == false)
+        flash[:error] = "退会済みです。"
+        redirect_to new_owner_session_path
+      end
+    else
+      flash[:error] = "必須項目を入力してください。"
+    end
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params

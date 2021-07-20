@@ -6,4 +6,10 @@ class Owner < ApplicationRecord
          
   has_many :chinchillas, dependent: :destroy
   attachment :image
+  
+  
+  # 退会後のログインを拒否
+  def active_for_authentication?
+    super && (self.join_status == true)
+  end
 end

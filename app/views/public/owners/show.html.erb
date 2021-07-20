@@ -1,6 +1,7 @@
 <h1><%= @owner.name %>さんのページ</h1> 
 <%= attachment_image_tag @owner, :image, :fill, 200, 200, fallback: "pf-images/profile_noimage.png", size: "200x200" %>
 <%= link_to "主さんの情報を変更する", edit_owners_path %>
+<%= link_to "退会する", withdrawal_path %>
 
 <h2><%= @owner.name %>さんちのチンチラさん</h2>
 <h3><%= link_to "新しい家族を追加", new_chinchilla_path %></h3>

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   scope module: :public do
     resource :owners, only: [:edit, :update]
     get 'mypage' => 'owners#show'
+    get 'withdrawal' => 'owners#withdrawal_confirmation'
+    patch 'withdrawal' =>'owners#withdrawal'
     resources :chinchillas
     resources :posts
     resources :hospitals
