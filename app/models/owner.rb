@@ -7,6 +7,7 @@ class Owner < ApplicationRecord
   has_many :chinchillas, dependent: :destroy
   has_many :hospitals, dependent: :destroy
   has_many :questions, dependent: :destroy
+  has_many :question_comments, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   attachment :image
   

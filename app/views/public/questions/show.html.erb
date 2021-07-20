@@ -6,6 +6,26 @@
   <% end %>
 <% end %>
 
+<div class="comments">
+<p>コメント件数：<%= @question.question_comments.count %></p>
+<% @question.question_comments.each do |question_comment| %>
+  <p><%= attachment_image_tag question_comment.owner, :image, :fill, 100, 100, fallback: "pf-images/profile_noimage.png", size: "100x100" %></p>
+  <%= question_comment.owner.name %>
+  <%= question_comment.created_at.strftime('%Y/%m/%d') %><%= question_comment.comment %>
+  <% if question_comment.owner == current_owner %>
+  <div class="comment-delete">
+    <%= link_to "削除", question_question_comment_path(question_comment.question, question_comment), method: :delete %>
+  </div>
+  <% end %>
+<% end %>
+</div>
+<div class="new-comment">
+<%= form_with(model:[@question, @question_comment], local: true) do |f| %>
+  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+  <%= f.submit "送信する" %>
+<% end %>
+</div>
+
 <% if @question.solution_status == true %>
   <p>解決済み</p>
 <% else %>

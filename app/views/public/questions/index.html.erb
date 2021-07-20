@@ -17,6 +17,7 @@
 <% @questions.each do |question| %>
   <%= link_to "#{question.question_title}", question_path(question) %>
   <%= question.owner.name %>
+  <p><%= link_to "#{question.question_comments.count} コメント", question_path(question) %></p>
   <% if question.solution_status == true %>
     <p>解決済み</p>
   <% else %>

@@ -10,7 +10,9 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
     end
     resources :hospitals
-    resources :questions
+    resources :questions do
+      resources :question_comments, only: [:create, :destroy]
+    end
     patch 'solved' => 'questions#solved'
   end
 
