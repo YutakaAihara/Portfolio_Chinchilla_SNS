@@ -10,6 +10,7 @@ class Owner < ApplicationRecord
   has_many :question_comments, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorite_posts, dependent: :destroy
+  has_many :favorite_chinchillas, dependent: :destroy
   attachment :image
   
   

@@ -7,6 +7,19 @@
 <%= @chinchilla.sex %>
 <%= @chinchilla.fur_type %>
 <%= @chinchilla.introduction %>
+<% if @chinchilla.favorited_by?(current_owner) %>
+  <p>
+    <%= link_to chinchilla_favorite_chinchillas_path(@chinchilla), method: :delete do %>
+      ファン<%= @chinchilla.favorite_chinchillas.count %> 人
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to chinchilla_favorite_chinchillas_path(@chinchilla), method: :post do %>
+      ファン<%= @chinchilla.favorite_chinchillas.count %> 人
+    <% end %>
+  </p>
+<% end %>
 <%= attachment_image_tag @chinchilla.owner, :image, :fill, 100, 100, fallback: "pf-images/profile_noimage.png", size: "100x100"%>
 <%= @chinchilla.owner.name %>
 <% if @chinchilla.owner = current_owner %>

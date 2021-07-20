@@ -8,12 +8,18 @@ Rails.application.routes.draw do
     get 'mypage' => 'owners#show'
     get 'withdrawal' => 'owners#withdrawal_confirmation'
     patch 'withdrawal' =>'owners#withdrawal'
-    resources :chinchillas
+    
+    resources :chinchillas do
+      resource :favorite_chinchillas, only: [:index, :create, :destroy]
+    end
+    
     resources :posts do
-      resource :favorite_posts, only: [:create, :destroy]
+      resource :favorite_posts, only: [:index, :create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
+    
     resources :hospitals
+    
     resources :questions do
       resources :question_comments, only: [:create, :destroy]
     end
