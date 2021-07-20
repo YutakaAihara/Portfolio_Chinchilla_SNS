@@ -1,2 +1,9 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<h1><%= @post.post_title %></h1>
+<%= attachment_image_tag @post, :image, :fill, 200, 200 %>
+<%= @post.post_body %>
+<%= @post.chinchilla.name %>の投稿
+<%= link_to "#{@post.chinchilla.name}ちゃんのページ", chinchilla_path(@post.chinchilla) %>
+<% if @post.chinchilla.owner == current_owner %>
+  <%= link_to "投稿を編集する", edit_post_path(@post) %>
+  <%= link_to "投稿を削除する", post_path(@post), method: :delete %>
+<% end %>
