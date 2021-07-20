@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resource :owners, only: [:edit, :update]
     get 'mypage' => 'owners#show'
-    resources :pets
+    resources :chinchillas
     resources :posts
     resources :hospitals
     resources :questions
