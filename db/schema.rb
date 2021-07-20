@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_20_132109) do
+ActiveRecord::Schema.define(version: 2021_07_20_152639) do
 
   create_table "chinchillas", force: :cascade do |t|
     t.string "name", null: false
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2021_07_20_132109) do
     t.float "rate", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_id"
   end
 
   create_table "owners", force: :cascade do |t|

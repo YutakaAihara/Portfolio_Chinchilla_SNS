@@ -1,2 +1,7 @@
-<h1>Public::Hospitals#index</h1>
-<p>Find me in app/views/public/hospitals/index.html.erb</p>
+<h1>病院情報</h1>
+<% @hospitals.each do |hospital| %>
+  <%= link_to hospital_path(hospital) do %>
+    <%= hospital.hospital_name %>
+  <% end %>
+<% end %>
+

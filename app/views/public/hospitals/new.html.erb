@@ -1,2 +1,31 @@
-<h1>Public::Hospitals#new</h1>
-<p>Find me in app/views/public/hospitals/new.html.erb</p>
+<h1>病院新規投稿</h1>
+<%= form_with model: @hospital, url: hospitals_path, local: true do |f| %>
+  <%= f.label :hospital_name, "病院名" %>
+  <%= f.text_field :hospital_name, placeholder: "〇〇動物病院" %>
+  <%= f.label :image, "病院関係写真" %>
+  <%= f.attachment_field :image %>
+  
+  <%= f.label :address, "住所" %>
+  <%= f.text_field :address, id: "address", placeholder: "東京都〇〇区1-1-1" %>
+  <input type="button" value="地図で確認する" onclick="codeAddress()">
+  <div id='map'></div>
+  <div id="star">
+  <%= f.label :rate, "評価" %>
+  <%= f.hidden_field :rate, id: :review_star %>
+  </div>
+  <%= f.label :comment, "口コミ" %>
+  <%= f.text_area :comment %>
+  <%= f.submit "投稿" %>
+<% end %>
+
+</div>
+<script>
+ $('#star').raty({
+   size: 36,
+   starOff: "<%= asset_path('raty-images/star-off.png') %>",
+   starOn: "<%= asset_path('raty-images/star-on.png') %>",
+   starHalf: "<%= asset_path('raty-images/star-half.png') %>",
+   scoreName: 'hospital[rate]', 
+   half: true,
+ });
+</script>
