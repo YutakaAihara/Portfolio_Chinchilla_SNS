@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :posts
     resources :hospitals
     resources :questions
-    patch 'solved' => 'question#solved'
+    patch 'solved' => 'questions#solved'
   end
 
   devise_for :owners, controllers: {

@@ -1,2 +1,13 @@
-<h1>Public::Questions#edit</h1>
-<p>Find me in app/views/public/questions/edit.html.erb</p>
+<h2>相談内容を編集</h2>
+<%= form_with model: @question, url: question_path(@question), local: true do |f| %>
+  <%= f.label :question_title, 'タイトル' %>
+  <%= f.text_field :question_title %>
+  
+  <%= f.label :question_body, '相談内容' %>
+  <%= f.text_area :question_body %>
+  
+  <%= f.label :question_images_mages, '画像をつける' %>
+  <%= f.attachment_field :question_images_images, multiple: true %>
+  
+  <%= f.submit "相談を更新する" %>
+<% end %>

@@ -1,2 +1,23 @@
-<h1>Public::Questions#show</h1>
-<p>Find me in app/views/public/questions/show.html.erb</p>
+<h1><%= @question.question_title %></h1>
+<%= @question.question_body %>
+<% if @question.question_images.present? %>
+  <% @question.question_images.each do |image| %>
+    <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+  <% end %>
+<% end %>
+
+<% if @question.solution_status == true %>
+  <p>解決済み</p>
+<% else %>
+  <p>コメント募集中</p>
+<% end %>
+
+<% if @question.owner == current_owner %>
+  <%= link_to "編集する", edit_question_path %>
+  <% if @question.solution_status == true %>
+    <%= link_to "未解決にする", solved_path(id: @question.id), method: :patch %>
+  <% else %>
+    <%= link_to "解決済みにする", solved_path(id: @question.id), method: :patch %>
+  <% end %>
+
+<% end %>

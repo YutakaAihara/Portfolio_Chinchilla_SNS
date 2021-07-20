@@ -26,7 +26,11 @@ class Public::QuestionsController < ApplicationController
   
   def solved
     question = Question.find(params[:id])
-    question.update(solution_status: true)
+    if question.solution_status == false
+      question.update(solution_status: true)
+    elsif question.solution_status == true
+      question.update(solution_status: false)
+    end
     redirect_to question_path(question)
   end
   
