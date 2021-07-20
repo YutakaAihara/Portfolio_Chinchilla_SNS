@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  post_title: MyString
+  post_body: MyText
+  image_id: MyString
+  chinchilla: one
+
+two:
+  post_title: MyString
+  post_body: MyText
+  image_id: MyString
+  chinchilla: two

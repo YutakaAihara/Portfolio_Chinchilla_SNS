@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  birthday: 2021-07-20
+  sex: 1
+  fur_type: MyString
+  introduction: MyText
+  image_id: MyString
+  owner: one
+
+two:
+  name: MyString
+  birthday: 2021-07-20
+  sex: 1
+  fur_type: MyString
+  introduction: MyText
+  image_id: MyString
+  owner: two
