@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  namespace :public do
+    get 'favorite_posts/index'
+  end
   scope module: :public do
     resource :owners, only: [:edit, :update]
     get 'mypage' => 'owners#show'
@@ -7,6 +10,7 @@ Rails.application.routes.draw do
     patch 'withdrawal' =>'owners#withdrawal'
     resources :chinchillas
     resources :posts do
+      resource :favorite_posts, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
     resources :hospitals
