@@ -1,4 +1,5 @@
 class Hospital < ApplicationRecord
+  belongs_to :owner
   attachment :image
   validates :hospital_name, presence: true
   validates :address, presence: true

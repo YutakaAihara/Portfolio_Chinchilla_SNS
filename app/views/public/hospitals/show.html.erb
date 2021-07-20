@@ -1,2 +1,23 @@
-<h1>Public::Hospitals#show</h1>
-<p>Find me in app/views/public/hospitals/show.html.erb</p>
+<h1><%= @hospital.hospital_name %></h1>
+<%= @hospital.address %>
+<div id="show_map"></div>
+<%= @hospital.rate %>
+<div class="hospital-rate"></div>
+<%= @hospital.comment %>
+<%= attachment_image_tag @hospital, :image, :fill, 200, 200, fallback: "pf-images/photo_noimage.png", size: "200x200" %>
+<% if @hospital.owner == current_owner %> 
+  <%= link_to "編集", edit_hospital_path(@hospital) %>
+  <%= link_to "削除", hospital_path(@hospital), method: :delete %>
+<% end %>
+
+<script>
+ $('.hospital-rate').raty({
+    readOnly: true,
+    size: 36,
+    starOff: "<%= asset_path('raty-images/star-off.png') %>",
+    starOn: "<%= asset_path('raty-images/star-on.png') %>",
+    starHalf: "<%= asset_path('raty-images/star-half.png') %>",
+    half: true,
+    score: "<%= @hospital.rate %>"
+  });
+</script>

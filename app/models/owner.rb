@@ -5,6 +5,7 @@ class Owner < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_many :chinchillas, dependent: :destroy
+  has_many :hospitals, dependent: :destroy
   attachment :image
   
   

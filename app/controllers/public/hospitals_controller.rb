@@ -14,8 +14,8 @@ class Public::HospitalsController < ApplicationController
   end
   
   def create
-    hospital = Hospital.new(hospital_params)
-    hospital.save
+    hospital = current_owner.hospitals.build(hospital_params)
+    hospital.save!
     redirect_to hospital_path(hospital)
   end
 
@@ -38,6 +38,6 @@ class Public::HospitalsController < ApplicationController
   private
   
   def hospital_params
-    params.require(:hospital).permit(:hospital_name, :address, :rate, :comment, :latitude, :longitude, :image)
+    params.require(:hospital).permit(:hospital_name, :address, :rate, :comment, :latitude, :longitude, :image, :owner_id)
   end
 end
