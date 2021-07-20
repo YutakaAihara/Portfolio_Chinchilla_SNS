@@ -1,2 +1,17 @@
-<h1>Public::Chinchillas#show</h1>
-<p>Find me in app/views/public/chinchillas/show.html.erb</p>
+<h1><%= @chinchilla.name %>ちゃん</h1>
+<%= attachment_image_tag @chinchilla, :image, :fill, 200, 200, fallback: "pf-images/photo_noimage.png", size: "200x200"%>
+<% if @chinchilla.birthday %>
+  <%= @chinchilla.birthday.strftime("%Y年 %m月") %>生まれ
+  (<%= chinchilla_old(@chinchilla) %>さい)
+<% end %>
+<%= @chinchilla.sex %>
+<%= @chinchilla.fur_type %>
+<%= @chinchilla.introduction %>
+<%= attachment_image_tag @chinchilla.owner, :image, :fill, 100, 100, fallback: "pf-images/profile_noimage.png", size: "100x100"%>
+<%= @chinchilla.owner.name %>
+<% if @chinchilla.owner = current_owner %>
+  <%= link_to "#{@chinchilla.name}ちゃんの情報を編集する", edit_chinchilla_path(@chinchilla) %>
+  <%= link_to "#{@chinchilla.name}ちゃんの情報を削除する", chinchilla_path(@chinchilla), method: :delete %>
+<% end %>
+
+
