@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     get 'withdrawal' => 'owners#withdrawal_confirmation'
     patch 'withdrawal' =>'owners#withdrawal'
     resources :chinchillas
-    resources :posts
+    resources :posts do
+      resources :post_comments, only: [:create, :destroy]
+    end
     resources :hospitals
     resources :questions
     patch 'solved' => 'questions#solved'
