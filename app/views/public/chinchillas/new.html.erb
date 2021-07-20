@@ -1,2 +1,24 @@
-<h1>Public::Chinchillas#new</h1>
-<p>Find me in app/views/public/chinchillas/new.html.erb</p>
+<h1>チンチラさんを登録</h1>
+<%= form_with model: @chinchilla, url: chinchillas_path, local: true do |f| %>
+  <%= f.label :name, "チンチラさんの名前" %>
+  <%= f.text_field :name %>
+  
+  <%= f.label :birthday, "チンチラさんの誕生日" %>
+  <%== sprintf(f.date_select(:birthday, use_month_numbers: true, date_separator: '%s', discard_day: true, start_year: Time.now.year, end_year: 2000, prompt: "--" ), '年') + '月' %>
+
+  <%= f.label :sex, "チンチラさんの性別" %>
+  <%= f.select :sex, Chinchilla.sexes.keys.map {|k| [k, k]}, {}, prompt: "--" %>
+
+  <%= f.label :fur_type, "チンチラさんの毛色・種類"%>
+  <%= f.text_field :fur_type, placeholder: 'スタンダードグレー' %>
+
+  <%= f.label :introduction, 'チンチラさんの紹介文' %>
+  <%= f.text_area :introduction %>
+
+  <%= f.label :image, 'チンチラさんのプロフィール写真' %>
+  <%= f.attachment_field :image %>
+
+  <%= f.hidden_field :owner_id, :value => current_owner.id %>
+  
+  <%= f.submit "登録" %>
+<% end %>

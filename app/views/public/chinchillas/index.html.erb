@@ -1,5 +1,6 @@
 <h1>チンチラさんたち</h1>
 <% @chinchillas.each do |chinchilla| %>
+  <%= attachment_image_tag chinchilla, :image, :fill, 150, 150, fallback: "pf-images/photo_noimage.png" %>
   <%= link_to "#{chinchilla.name}", chinchilla_path(chinchilla) %>
-  <%= attachment_image_tag chinchilla, :image, fill, 150, 150, fallback: "pf-images/photo_noimage.png" %>
+  <%= chinchilla.owner.name %>
 <% end %>

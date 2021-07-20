@@ -7,5 +7,5 @@
 <h3><%= link_to "新しい家族を追加", new_chinchilla_path %></h3>
 <% @owner.chinchillas.each do |chinchilla| %>
   <%= chinchilla.name %>
-  <%= attachment_image_tag chinchilla, :image, :full, 150, 1500, fallback: "pf-images/photo_noimage.png", size: "150x150" %>
+  <%= attachment_image_tag chinchilla, :image, :fill, 150, 150, fallback: "pf-images/photo_noimage.png", size: "150x150" %>
 <% end %>

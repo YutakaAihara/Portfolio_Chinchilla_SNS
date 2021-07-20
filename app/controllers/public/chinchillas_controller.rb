@@ -9,18 +9,17 @@ class Public::ChinchillasController < ApplicationController
   
   def create
     chinchilla = Chinchilla.new(chinchilla_params)
-    chinchilla.owner_id = current_owner.id
-    if pet.save
+    if chinchilla.save
       redirect_to chinchilla_path(chinchilla)
     end
   end
 
   def show
-    @chinchilla = Chinchilla.find(prams[:id])
+    @chinchilla = Chinchilla.find(params[:id])
   end
 
   def edit
-    @chinchilla = Chinchilla.find(prams[:id])
+    @chinchilla = Chinchilla.find(params[:id])
   end
   
   def update
