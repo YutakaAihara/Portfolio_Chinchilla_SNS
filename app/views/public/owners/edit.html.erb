@@ -1,5 +1,5 @@
 <h1>主さんの情報を更新する</h1>
-<%= form_with model: @owner, url: owners_path, local: true do |f| %>
+<%= form_with model: @owner, url: owner_path(@owner), local: true do |f| %>
   <%= f.label :name, "名前" %>
   <%= f.text_field :name %>
   

@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
   
+  devise_for :owners, controllers: {
+    sessions:      'owners/sessions',
+    passwords:     'owners/passwords',
+    registrations: 'owners/registrations',
+    confirmations: 'owners/confirmations',
+    omniauth: 'owners/omniauth',
+    unlocks: 'owners/unlocks'
+  }
   namespace :public do
     get 'favorite_posts/index'
   end
   scope module: :public do
-    resource :owners, only: [:edit, :update]
-    get 'mypage' => 'owners#show'
+    resources :owners, only: [:show, :edit, :update]
     get 'withdrawal' => 'owners#withdrawal_confirmation'
     patch 'withdrawal' =>'owners#withdrawal'
     
@@ -24,16 +31,12 @@ Rails.application.routes.draw do
       resources :question_comments, only: [:create, :destroy]
     end
     patch 'solved' => 'questions#solved'
+    
+    get   'contact' => 'contacts#new' 
+    post  'contact/confirm' => 'contacts#confirm' 
+    post  'contact/thanks'  => 'contacts#thanks'
   end
 
-  devise_for :owners, controllers: {
-    sessions:      'owners/sessions',
-    passwords:     'owners/passwords',
-    registrations: 'owners/registrations',
-    confirmations: 'owners/confirmations',
-    omniauth: 'owners/omniauth',
-    unlocks: 'owners/unlocks'
-  }
 
   
   root to: 'homes#top'

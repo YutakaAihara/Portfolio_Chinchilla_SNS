@@ -1,0 +1,25 @@
+<%= form_with model: @contact, url: contact_confirm_path, local: true do |f| %>
+  <h1>お問い合わせ</h1>
+
+  <% if @contact.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <strong>入力内容にエラーがあります</strong>
+      <ul>
+        <% @contact.errors.each do |attr, msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.label :name, "名前" %>
+  <%= f.text_field :name %>
+  
+  <%= f.label :email, 'メールアドレス' %>
+  <%= f.email_field :email %>
+  
+  <%= f.label :message, "お問い合わせ内容" %>
+  <%= f.text_area :message %>
+  
+  <%= f.submit "確認" %>
+<% end %>

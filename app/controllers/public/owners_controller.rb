@@ -1,25 +1,25 @@
 class Public::OwnersController < ApplicationController
 
   def show
-    @owner = current_owner
+    @owner = Owner.find(params[:id])
   end
 
   def edit
-    @owner = current_owner
+    @owner = Owner.find(params[:id])
   end
   
   def update
-    owner = current_owner
+    owner = Owner.find(params[:id])
     owner.update(owner_params)
-    redirect_to mypage_path
+    redirect_to owner_path(owner)
   end
   
   def withdrawal_confirmation
-    @owner = current_owner
+    @owner = Owner.find(params[:id])
   end
   
   def withdrawal
-    owner = current_owner
+    owner = Owner.find(params[:id])
     owner.update(join_status: false)
     reset_session
     redirect_to root_path

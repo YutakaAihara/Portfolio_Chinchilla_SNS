@@ -1,0 +1,16 @@
+<h1>お問い合わせ確認</h1>
+<%= form_with model: @contact, url: contact_thanks_path, local: true do |f| %>
+  <p>名前</p>
+  <%= f.hidden_field :name %>
+  <%= @contact.name %>
+  
+  <p>メールアドレス</p>
+  <%= f.hidden_field :email %>
+  <%= @contact.email %>
+  
+  <p>お問い合わせ内容</p>
+  <%= f.hidden_field :message %>
+  <%= simple_format(@contact.message) %>
+  
+  <%= f.submit '送信' %>
+<% end %>
