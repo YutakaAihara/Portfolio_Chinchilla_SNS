@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  devise_for :admins, controllers: {
+    sessions: 'devises/sessions',
+  }
+  
   devise_for :owners, controllers: {
     sessions:      'owners/sessions',
     passwords:     'owners/passwords',
