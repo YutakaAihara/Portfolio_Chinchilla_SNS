@@ -11,10 +11,14 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
     <%= flash[:error] %>
+    
     <main>
       <%= yield %>
+      <% unless owner_signed_in? %>
+        <%= render partial: 'owners/registrations/new' %>
+        <%= render partial: 'owners/sessions/new' %>
+      <% end %>
     </main>
     
     <%= render 'layouts/footer' %>

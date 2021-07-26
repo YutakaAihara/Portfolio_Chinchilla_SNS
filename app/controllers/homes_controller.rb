@@ -1,7 +1,6 @@
 class HomesController < ApplicationController
   def top
+    @owner = Owner.new
   end
   
-  def about
-  end
 end

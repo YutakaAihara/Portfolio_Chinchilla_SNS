@@ -17,10 +17,42 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-header {
-    background-color: rgb(216, 226, 128);
+
+.top-contents {
+    height: 100vh;
+
 }
 
-body {
-    background-color: rgb(255, 252, 219);
+.top-left {
+    height: 100vh;
+    // background: url(/assets/pf-images/top_background.png);
+    // background-size: cover;
+    background: linear-gradient(to right, rgb(224, 230, 102), rgb(255, 254, 243));
 }
+
+.side-logo {
+    line-height: 100vh;
+    text-align: center;
+    margin: auto;
+}
+
+.top-right {
+    height: 100vh;
+    background-color: rgb(255, 254, 243);
+}
+
+.top-text {
+    height: 100vh;
+    text-align: center;
+    margin: auto;
+}
+
+.signin, .signup {
+    width: 200px;
+}
+
+
+footer {
+    background-color: rgb(255, 254, 243);
+}
+

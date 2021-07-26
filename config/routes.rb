@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   devise_for :admins, controllers: {
-    sessions: 'devises/sessions',
+    sessions: 'admins/sessions',
   }
   
   devise_for :owners, controllers: {
@@ -44,7 +44,5 @@ Rails.application.routes.draw do
 
   
   root to: 'homes#top'
-  scope :home do
-    get 'about' => 'homes#about'
-  end
+
 end
