@@ -17,7 +17,11 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+body {
+    background-color: rgb(255, 254, 243);    
+}
 
+// top画面
 .top-contents {
     height: 100vh;
 
@@ -50,6 +54,38 @@
 .signin, .signup {
     width: 200px;
 }
+
+
+// ユーザ詳細
+.owner-header{
+    table {
+      background-color: rgb(197, 161, 108);  
+      width: 100%;
+    }
+}
+.owner-image {
+    height: 150px;
+    text-align: center;
+
+    
+    a {
+      color: white;  
+    }
+    
+    img {
+      border-radius: 50%;
+      border: 0.2rem solid white;
+    }
+}
+
+.owner-profile {
+    height: 150px;
+    a {
+        color: rgb(151, 87, 56);
+        font-size: 30px;
+    }
+}
+
 
 
 footer {
