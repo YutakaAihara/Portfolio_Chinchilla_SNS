@@ -56,34 +56,25 @@ body {
 }
 
 
+// 左サイドバー
+.left-bar{
+    font-size: 1.2em;
+}
 // ユーザ詳細
-.owner-header{
-    table {
-      background-color: rgb(197, 161, 108);  
-      width: 100%;
+.center {
+  .owner-profile {
+      background-color: rgb(216, 179, 146);
+      border-radius: 10% / 50%;
+      .owner-image {
+ 
+          .owner-photo {
+              margin: 10px;
+              border: 2mm solid white;
+              border-radius: 50%;
+          }
+      }
     }
-}
-.owner-image {
-    height: 150px;
-    text-align: center;
-
     
-    a {
-      color: white;  
-    }
-    
-    img {
-      border-radius: 50%;
-      border: 0.2rem solid white;
-    }
-}
-
-.owner-profile {
-    height: 150px;
-    a {
-        color: rgb(151, 87, 56);
-        font-size: 30px;
-    }
 }
 
 

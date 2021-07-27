@@ -1,22 +1,30 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <% if owner_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to('Logout', destroy_owner_session_path, method: :delete) %>
-        </li>
-      <% else %>
-        <li class="nav-item active">
-          <a class="nav-link" data-toggle="modal" data-target="#signUpModal">Sign Up</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#logInModal">Log In</a>
-        </li>
+
+  <nav class="navbar d-flex flex-column ml-5 mr-5">
+    <div class="logo mt-3 mb-3">
+      <%= link_to posts_path do %>
+        <%= image_tag "pf-images/logo.png", :size => "200x80" %>
       <% end %>
-    </ul>
-  </div>
-</nav>
+    </div>
+    <div>
+      <%= link_to " ホーム", posts_path, class: "fas fa-home mt-3 mb-3" %>
+    </div>
+    <div>
+      <%= link_to " チンチラさん", chinchillas_path, class: "fas fa-paw mt-3 mb-3" %>
+    </div>
+    <div>
+      <%= link_to " 病院レビュー", hospitals_path, class: "fas fa-hospital-alt mt-3 mb-3" %>
+    </div>
+    <div>
+      <%= link_to " プロフィール", owner_path(current_owner), class: "fas fa-user mt-3 mb-3" %>
+    </div>
+    <div>
+      <a href="#" class="fas fa-users mt-3 mb-3" style="color: gray;"> コミュニティ</a>
+    </div>
+    <div>
+      <a href="#" class="fas fa-envelope mt-3 mb-3" style="color: gray;"> メッセージ</a>
+    </div>
+     <div>
+      <%= link_to " ログアウト", destroy_owner_session_path, class: "fas fa-sign-out-alt mt-3 mb-3" %>
+    </div>
+  
+  </nav>
