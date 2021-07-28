@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
   
-  devise_for :admins, controllers: {
-    sessions: 'admins/sessions',
-  }
-  
   devise_for :owners, controllers: {
     sessions:      'owners/sessions',
     passwords:     'owners/passwords',
@@ -12,6 +8,11 @@ Rails.application.routes.draw do
     omniauth: 'owners/omniauth',
     unlocks: 'owners/unlocks'
   }
+  
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions',
+  }
+  
   namespace :public do
     get 'favorite_posts/index'
   end

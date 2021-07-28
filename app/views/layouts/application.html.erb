@@ -14,8 +14,24 @@
     <%= flash[:error] %>
     
     <main>
-      <%= yield %>
-      <% unless owner_signed_in? %>
+      <% if owner_signed_in? %>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="left-bar col-md-3">
+              <%= render "layouts/navbar" %>
+            </div>
+            <div class="center col-md-6 mt-5">
+              <%= yield %>
+            </div>
+            <div class="right-bar col-md-3">
+              ccccccccccccccccccccccccccccc
+            </div>
+          </div>
+        </div>
+      <% elsif admin_signed_in? %>
+        <%= yield %>
+      <% else %>
+        <%= yield %>
         <%= render partial: 'owners/registrations/new' %>
         <%= render partial: 'owners/sessions/new' %>
       <% end %>

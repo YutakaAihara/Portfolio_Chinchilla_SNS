@@ -31,7 +31,7 @@ body {
     height: 100vh;
     // background: url(/assets/pf-images/top_background.png);
     // background-size: cover;
-    background: linear-gradient(to right, rgb(224, 230, 102), rgb(255, 254, 243));
+    background: linear-gradient(to right, rgb(224, 230, 102) 80%, rgb(255, 254, 243));
 }
 
 .side-logo {
@@ -61,25 +61,51 @@ body {
     font-size: 1.2em;
 }
 // ユーザ詳細
-.center {
-  .owner-profile {
-      background-color: rgb(216, 179, 146);
-      border-radius: 10% / 50%;
-      .owner-image {
- 
-          .owner-photo {
-              margin: 10px;
-              border: 2mm solid white;
-              border-radius: 50%;
-          }
+.owner-profile {
+    background-color: rgb(216, 179, 146);
+    border-radius: 10% / 50%;
+    
+  .owner-image {
+
+      .owner-photo {
+          margin: 10px;
+          border: 2mm solid white;
+          border-radius: 50%;
       }
+  }
+}
+
+.owner-chinchilla {
+    width: 100%;
+    .chinchilla-head {
+        width: 100%;   
     }
     
 }
-
-
-
-footer {
-    background-color: rgb(255, 254, 243);
+.chinchilla-image {
+    border-radius: 50%;
 }
+
+.chinchilla-info {
+    position: relative;
+    margin: 1.5em 0 1.5em 15px;
+    padding: 7px 10px;
+    min-width: 120px;
+    max-width: 800px;
+    font-size: 16px;
+    background: rgb(216, 179, 146);
+    :before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -30px;
+        margin-top: -15px;
+        border: 15px solid transparent;
+        border-right: 15px solid rgb(216, 179, 146);
+    }
+    
+} 
+
+
+
 
