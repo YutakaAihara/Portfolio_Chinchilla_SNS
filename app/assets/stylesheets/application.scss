@@ -192,32 +192,30 @@ body {
 
 .comment-body {
     position: relative;
-    margin: 1.5em 0 1.5em 15px;
+    margin: 1em 0 1em 15px;
     padding: 7px 15px;
     min-width: 120px;
     max-width: 800px;
     font-size: 20px;
     background: rgb(216, 179, 146);
-    border-radius: 10%/50%;
+    border-radius: 10%/10%;
     :before {
         content: "";
         position: absolute;
         top: 50%;
-        left: -25px;
+        left: -30px;
         margin-top: -15px;
         border: 15px solid transparent;
         border-right: 15px solid rgb(216, 179, 146);
     }
 }
 
-// 病院投稿画面
-.hospital-new {
-    
-}
+// 病院投稿画面・編集画面
 
 .post-area .hosptal-name-post, .hospital-image-post, .hospital-address-post, .hospital-rate-post, .hospital-comment-post{
     border-bottom: 1px solid gray;
 }
+
 #map {
     width: 400px;
     height: 400px;
@@ -227,5 +225,17 @@ body {
     width: 100%;
     height: 50px;
 }
+
+
+// 病院詳細画面
+.hospital-detail .detail-hosptal-name, .detail-hospital-address, .detail-hospital-rate, .detail-hospital-comment{
+    border-bottom: 1px solid gray;
+}
+
+#show_map {
+    width: 400px;
+    height: 400px;
+}
+
 
 

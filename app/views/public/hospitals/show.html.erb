@@ -1,15 +1,27 @@
-<h2><%= @hospital.hospital_name %></h2>
-<%= @hospital.address %>
-<div id="show_map"></div>
-<%= @hospital.rate %>
-<div class="hospital-rate"></div>
-<%= @hospital.comment %>
-<%= attachment_image_tag @hospital, :image, :fill, 200, 200, fallback: "pf-images/photo_noimage.png", size: "200x200" %>
-<% if @hospital.owner == current_owner %> 
-  <%= link_to "編集", edit_hospital_path(@hospital) %>
-  <%= link_to "削除", hospital_path(@hospital), method: :delete %>
-<% end %>
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col hospital-detail">
+        <div class="detail-hosptal-name mb-3 pb-3">
+          <h3><%= @hospital.hospital_name %></h3>
+        </div>
+        <div class="detail-hospital-address mb-3 pb-3">
+          <%= @hospital.address %>
+        </div>
+        <div class="detail-hospital-rate mb-3 pb-3">
+          <p><%= @hospital.rate %>点</p>
+          <div class="hospital-rate"></div>
+        </div>
+        <div class="detail-hospital-comment mb-3 pb-3">
+          <%= @hospital.comment %>
+        </div>
+        <div class=hospital-images>
+    </div>
+    
+    <div class="col map-area">
+      <div id='show_map' class="ml-4"></div>
+    </div>
+  </div>
+</div>
 <script>
  $('.hospital-rate').raty({
     readOnly: true,

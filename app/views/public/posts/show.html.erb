@@ -35,7 +35,7 @@
   <div class="comments ml-5 mt-5">
     <h3>コメント</h3>
     <% @post.post_comments.each do |post_comment| %>
-      <div class="d-flex align-items-center mt-3">
+      <div class="d-flex align-items-center mt-0">
         <div class="comment-owner-image">
           <%= attachment_image_tag post_comment.owner, :image, :fill, 50, 50, fallback: "pf-images/profile_noimage.png", size: "50x50", class: "comment-owner-image" %>
         </div>
