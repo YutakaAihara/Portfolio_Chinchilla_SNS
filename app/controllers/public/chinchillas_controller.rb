@@ -5,13 +5,13 @@ class Public::ChinchillasController < ApplicationController
   def index
     @chinchillas = Chinchilla.page(params[:page]).reverse_order
 
-    @random = Post.order("RANDOM()").limit(6)
+    @random = Post.order("RAND()").limit(6)
   end
 
   def new
     @chinchilla = Chinchilla.new
 
-    @random = Post.order("RANDOM()").limit(6)
+    @random = Post.order("RAND()").limit(6)
   end
   
   def create
@@ -28,11 +28,11 @@ class Public::ChinchillasController < ApplicationController
   def show
     @chinchilla = Chinchilla.find(params[:id])
     
-    @random = Post.order("RANDOM()").limit(6)
+    @random = Post.order("RAND()").limit(6)
   end
 
   def edit
-    @random = Post.order("RANDOM()").limit(6)
+    @random = Post.order("RAND()").limit(6)
   end
   
   def update
@@ -40,7 +40,7 @@ class Public::ChinchillasController < ApplicationController
       flash[:notice] = "チンチラの情報が更新されました！"
       redirect_to chinchilla_path(@chinchilla)
     else
-      @random = Post.order("RANDOM()").limit(6)
+      @random = Post.order("RAND()").limit(6)
       render :edit
     end
    end
