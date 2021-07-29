@@ -13,6 +13,20 @@ Rails.application.routes.draw do
     sessions: 'admins/sessions',
   }
   
+  devise_scope :admin do
+    get 'admin', to: 'admins/sessions#new'
+  end
+  
+
+  namespace :admin do
+    resources :hospitals, only: [:index, :destroy]
+    resources :chinchillas, only: [:index, :destroy]
+    resources :posts, only: [:index, :destroy]
+    resources :owners, only: [:index, :update]
+  end
+
+    
+  
   scope module: :public do
     resources :owners, only: [:show, :edit, :update]
     get 'confirmation/:id' => 'owners#withdrawal_confirmation', as: 'confirm_unsubscribe'

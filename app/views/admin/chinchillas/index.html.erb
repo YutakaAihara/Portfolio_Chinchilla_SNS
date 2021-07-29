@@ -1,0 +1,25 @@
+<h2>チンチラ一覧</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">チンチラの名前</th>
+      <th scope="col">飼い主名</th>
+      <th scope="col">自己紹介</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @chinchillas.each do |chinchilla| %>
+        <tr>
+          <td>
+            <%= chinchilla.name %>
+          </td>
+          <td><%= chinchilla.owner.name %></td>
+          <td><%= chinchilla.introduction %></td>
+          <td><%= link_to "削除", admin_chinchilla_path(chinchilla), method: :delete, class: "btn btn-sm btn-danger" %></td>
+        </tr>
+        
+    <% end %>
+    <%= paginate @chinchillas %>
+  </tbody>
+</table>

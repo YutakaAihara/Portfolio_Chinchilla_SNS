@@ -11,7 +11,7 @@
                 <div>
                     <h1>ログイン</h1>
 
-                    <%= form_with model: @owner, url: owner_session_path, local: true do |f| %>
+                    <%= form_with model: @owner, url: owner_session_path, method: :post, local: true do |f| %>
                       <div class="field mt-3">
                         <%= f.label :email, "メールアドレス" %><br />
                         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>

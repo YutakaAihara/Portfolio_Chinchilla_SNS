@@ -3,6 +3,13 @@ class Chinchilla < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :favorite_chinchillas, dependent: :destroy
   
+  validates :name, presence: true
+  validates :birthday, presence: true
+  validates :sex, presence: true
+  validates :fur_type, presence: true
+  validates :introduction, length: { in: 1..100 }
+  
+  
   attachment :image
   enum sex: { "オス": 0, "メス": 1 }
   

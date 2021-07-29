@@ -1,0 +1,25 @@
+<h2>飼い主一覧</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">名前</th>
+      <th scope="col">メールアドレス</th>
+      <th scope="col">自己紹介</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @owners.each do |owner| %>
+        <tr>
+          <td>
+            <%= owner.name %>
+          </td>
+          <td><%= owner.email %></td>
+          <td><%= owner.introduction %></td>
+          <td><%= link_to "削除", admin_owner_path(owner), method: :delete, class: "btn btn-sm btn-danger" %></td>
+        </tr>
+        
+    <% end %>
+    <%= paginate @owners %>
+  </tbody>
+</table>

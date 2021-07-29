@@ -1,4 +1,5 @@
 class Public::QuestionCommentsController < ApplicationController
+  before_action :authenticate_owner!
   def create
     question = Question.find(params[:question_id])
     comment = current_owner.question_comments.new(question_comment_params)

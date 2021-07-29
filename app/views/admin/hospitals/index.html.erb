@@ -1,0 +1,28 @@
+<h2>病院レビュー一覧</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">病院名</th>
+      <th scope="col">住所</th>
+      <th scope="col">評価</th>
+      <th scope="col">投稿者</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @hospitals.each do |hospital| %>
+        <tr>
+          <td>
+            <%= link_to hospital_path(hospital) do %>
+              <%=hospital.hospital_name %>
+            <% end %>
+          </td>
+          <td><%= hospital.address %></td>
+          <td class="hospital-rate" data-score="<%= hospital.rate %>"></td>
+          <td><%= hospital.owner.name%></td>
+          <td><%= link_to "削除", admin_hospital_path(hospital), method: :delete, class: "btn btn-sm btn-danger" %></td>
+        </tr>
+        
+    <% end %>
+    <%= paginate @hospitals %>
+  </tbody>
