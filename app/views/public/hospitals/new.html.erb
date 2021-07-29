@@ -1,24 +1,44 @@
-<h1>病院新規投稿</h1>
-<%= form_with model: @hospital, url: hospitals_path, local: true do |f| %>
-  <%= f.label :hospital_name, "病院名" %>
-  <%= f.text_field :hospital_name, placeholder: "〇〇動物病院" %>
-  <%= f.label :image, "病院関係写真" %>
-  <%= f.attachment_field :image %>
-  
-  <%= f.label :address, "住所" %>
-  <%= f.text_field :address, id: "address", placeholder: "東京都〇〇区1-1-1" %>
-  <input type="button" value="地図で確認する" onclick="codeAddress()">
-  <div id='map'></div>
-  <div id="star">
-  <%= f.label :rate, "評価" %>
-  <%= f.hidden_field :rate, id: :review_star %>
+<h1 class="hospital-new mb-4">病院新規投稿</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col post-area">
+      <%= form_with model: @hospital, url: hospitals_path, local: true do |f| %>
+        <div class="hosptal-name-post mb-3 pb-3">
+          <%= f.label :hospital_name, "病院名　" %>
+          <%= f.text_field :hospital_name, placeholder: "〇〇動物病院" %>
+        </div>
+        <div class="hospital-image-post mb-3 pb-3">
+          <%= f.label :image, "病院関係写真　" %>
+          <%= f.attachment_field :image %>
+        </div>
+        <div class="hospital-address-post mb-3 pb-3">
+          <%= f.label :address, "住所　" %>
+          <%= f.text_field :address, id: "address", placeholder: "東京都〇〇区1-1-1" %>
+          <input type="button" value="地図で確認する" onclick="codeAddress()">
+        </div>
+        <div class="hospital-rate-post mb-3 pb-3">
+          <div id="star">
+            <%= f.label :rate, "評価" %>
+            <%= f.hidden_field :rate, id: :review_star %>
+          </div>
+        </div>
+        <div class="hospital-comment-post mb-3 pb-3">
+          <%= f.label :comment, "口コミ" %><br>
+          <%= f.text_area :comment, class: "comment-area" %>
+        </div>
+        <div class="hospital-btn">
+          <%= f.submit "投稿", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="col map-area">
+      <div id='map'></div>
+    </div>
   </div>
-  <%= f.label :comment, "口コミ" %>
-  <%= f.text_area :comment %>
-  <%= f.submit "投稿" %>
-<% end %>
-
 </div>
+
+
 <script>
  $('#star').raty({
    size: 36,

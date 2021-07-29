@@ -1,8 +1,43 @@
-<h1>病院情報</h1>
-<%= link_to "病院を紹介する", new_hospital_path %>
-<% @hospitals.each do |hospital| %>
-  <%= link_to hospital_path(hospital) do %>
-    <%= hospital.hospital_name %>
-  <% end %>
-<% end %>
+<h2>病院レビュー</h2>
+<%= link_to "病院のレビューを投稿する", new_hospital_path, class: "btn btn-primary btn-sm mt-2 mb-2" %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">病院名</th>
+      <th scope="col">住所</th>
+      <th scope="col">評価</th>
+      <th scope="col">投稿者</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @hospitals.each do |hospital| %>
+        <tr>
+          <td>
+            <%= link_to hospital_path(hospital) do %>
+              <%=hospital.hospital_name %>
+            <% end %>
+          </td>
+          <td><%= hospital.address %></td>
+          <td class="hospital-rate" data-score="<%= hospital.rate %>"></td>
+          <td><%= hospital.owner.name%></td>
+        </tr>
+        
+    <% end %>
+  </tbody>
+</table>
 
+<script>
+// 評価の星
+  $('.hospital-rate').empty();
+   $('.hospital-rate').raty({
+      readOnly: true,
+      size: 36,
+      starOff: "<%= asset_path('raty-images/star-off.png') %>",
+      starOn: "<%= asset_path('raty-images/star-on.png') %>",
+      starHalf: "<%= asset_path('raty-images/star-half.png') %>",
+      half: true,
+      score: function() {
+        return $(this).attr('data-score');
+      },
+    });
+</script>

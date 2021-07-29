@@ -18,7 +18,10 @@
 @import 'font-awesome';
 
 body {
-    background-color: rgb(255, 254, 243);    
+    background-color: rgb(255, 254, 243);
+    a {
+        color: rgb(210, 132, 42);
+    }
 }
 
 // top画面
@@ -78,15 +81,15 @@ body {
 .owner-chinchilla {
     width: 100%;
     .chinchilla-head {
-        width: 100%;   
+        width: 100%;
     }
     
 }
-.chinchilla-image {
+.owner-chinchilla-image {
     border-radius: 50%;
 }
 
-.chinchilla-info {
+.owner-chinchilla-info {
     position: relative;
     margin: 1.5em 0 1.5em 15px;
     padding: 7px 10px;
@@ -107,5 +110,43 @@ body {
 } 
 
 
+// チンチラ詳細
+.chinchilla-image {
+    border-radius: 50%;
+}
+
+.chinchilla-owner-image {
+    border-radius: 50%;
+}
+
+
+
+// チンチラ一覧
+
+.index-chinchilla-card {
+    background:  rgb(216, 179, 146);
+    border-radius: 10%;
+}
+
+.index-chinchilla-image {
+    border-radius: 10%;   
+}
+// 病院投稿画面
+.hospital-new {
+    
+}
+
+.post-area .hosptal-name-post, .hospital-image-post, .hospital-address-post, .hospital-rate-post, .hospital-comment-post{
+    border-bottom: 1px solid gray;
+}
+#map {
+    width: 400px;
+    height: 400px;
+}
+
+.comment-area {
+    width: 100%;
+    height: 50px;
+}
 
 
