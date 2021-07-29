@@ -4,7 +4,7 @@
     <div class="index-chinchilla-card px-2">
       <div class="index-chinchilla-image mt-2">
         <%= link_to chinchilla_path(chinchilla) do %>
-          <%= attachment_image_tag chinchilla, :image, :fill, 150, 150, fallback: "pf-images/photo_noimage.png", size: "150x150", class: "index-chinchilla-image" %>
+          <%= attachment_image_tag chinchilla, :image, :fill, 150, 150, fallback: asset_path("pf-images/photo_noimage.png"), size: "150x150", class: "index-chinchilla-image" %>
         <% end %>
       </div>
       <div class="index-chinchilla-name ml-1 mt-2">
