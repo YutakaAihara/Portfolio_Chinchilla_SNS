@@ -1,20 +1,33 @@
-<h1>主さんの情報を更新する</h1>
-<%= form_with model: @owner, url: owner_path(@owner), local: true do |f| %>
-  <%= f.label :name, "名前" %>
-  <%= f.text_field :name %>
+<h2>飼い主さんの情報を更新する</h2>
+ <%= form_with model: @owner, url: owner_registration_path, local: true do |f| %>
+  <div class="field mt-3">
+    <%= f.label :name, '名前(ニックネーム)' %><br />
+    <%= f.text_field :name, placeholder: "チンチラ太郎" %>
+  </div>
   
-  <%= f.label :email, "メールアドレス" %>
-  <%= f.email_field :email %>
+  <div class="field mt-3">
+    <%= f.label :email, 'メールアドレス' %><br />
+    <%= f.email_field :email, placeholder: "〇〇@☆☆" %>
+  </div>
   
-  <%= f.label :prefecture, "お住いの都道府県" %>
-  <%= f.text_field :prefecture %>
+  <div class="field mt-3">
+    <%= f.label :prefecture, '都道府県(同じ都道府県のユーザを探すのに使用します)' %><br />
+    <%= f.select :prefecture, Owner.prefectures.keys, {} %>
+  </div>
   
-  <%= f.label :image, "プロフィール画像" %>
-  <%= f.attachment_field :image %>
+  <div class="field mt-3">
+    <%= f.label :introduction, '自己紹介' %><br />
+    <%= f.text_area :introduction  %>
+  </div>
   
-  <%= f.label :introduction, "自己紹介" %>
-  <%= f.text_area :introduction %>
-  
-  <%= f.submit "更新" %>
+  <div class="field mt-3">
+    <%= f.label :image, 'プロフィール画像' %><br />
+    <%= f.attachment_field :image %>
+  </div>
+
+
+  <div class="actions mt-3">
+    <%= f.submit "登録" %>
+  </div>
 
 <% end %>
