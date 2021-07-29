@@ -8,8 +8,9 @@
           <%= f.text_field :hospital_name, placeholder: "〇〇動物病院" %>
         </div>
         <div class="hospital-image-post mb-3 pb-3">
-          <%= f.label :image, "病院関係写真　" %>
-          <%= f.attachment_field :image %>
+          <%= f.label :image, "病院関係写真" %><br>
+          <p>(複数投稿する時は、Ctrlをおしながら画像を選択してください。)</p>
+          <%= f.attachment_field :hospital_images_images, multiple: true %>
         </div>
         <div class="hospital-address-post mb-3 pb-3">
           <%= f.label :address, "住所　" %>

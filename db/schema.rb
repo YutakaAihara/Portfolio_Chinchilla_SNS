@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_26_052227) do
+ActiveRecord::Schema.define(version: 2021_07_29_065746) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(version: 2021_07_26_052227) do
     t.index ["post_id"], name: "index_favorite_posts_on_post_id"
   end
 
+  create_table "hospital_images", force: :cascade do |t|
+    t.integer "hospital_id", null: false
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hospital_id"], name: "index_hospital_images_on_hospital_id"
+  end
+
   create_table "hospitals", force: :cascade do |t|
     t.string "hospital_name", null: false
     t.string "address", null: false
@@ -60,7 +68,6 @@ ActiveRecord::Schema.define(version: 2021_07_26_052227) do
     t.float "rate", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image_id"
     t.integer "owner_id"
     t.index ["owner_id"], name: "index_hospitals_on_owner_id"
   end

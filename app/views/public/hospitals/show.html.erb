@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col hospital-detail">
+    <div class="col-lg-6 hospital-detail">
         <div class="detail-hosptal-name mb-3 pb-3">
           <h3><%= @hospital.hospital_name %></h3>
         </div>
@@ -15,13 +15,19 @@
           <%= @hospital.comment %>
         </div>
         <div class=hospital-images>
+          <p>関連画像</p>
+          <% @hospital.hospital_images.each do |image| %>
+            <%= attachment_image_tag image, :image, :fill, 150, 150, class: "ml-2 mt-2"%>
+          <% end %>
+        </div>  
     </div>
     
-    <div class="col map-area">
+    <div class="col-lg-6 map-area">
       <div id='show_map' class="ml-4"></div>
     </div>
   </div>
 </div>
+
 <script>
  $('.hospital-rate').raty({
     readOnly: true,

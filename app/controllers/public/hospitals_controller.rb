@@ -46,7 +46,7 @@ class Public::HospitalsController < ApplicationController
   private
   
   def hospital_params
-    params.require(:hospital).permit(:hospital_name, :address, :rate, :comment, :latitude, :longitude, :image, :owner_id)
+    params.require(:hospital).permit(:hospital_name, :address, :rate, :comment, :latitude, :longitude, :owner_id, hospital_images_images: [])
   end
   
   def move_to_signed_in

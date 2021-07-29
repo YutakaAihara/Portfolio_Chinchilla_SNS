@@ -1,15 +1,16 @@
 <h1 class="hospital-new mb-4">病院新規投稿</h1>
 <div class="container-fluid">
   <div class="row">
-    <div class="col post-area">
-      <%= form_with model: @hospital, url: hospitals_path, local: true do |f| %>
+    <div class="col-lg-6 post-area">
+      <%= form_with model: @hospital, local: true do |f| %>
         <div class="hosptal-name-post mb-3 pb-3">
           <%= f.label :hospital_name, "病院名　" %>
           <%= f.text_field :hospital_name, placeholder: "〇〇動物病院" %>
         </div>
         <div class="hospital-image-post mb-3 pb-3">
-          <%= f.label :image, "病院関係写真　" %>
-          <%= f.attachment_field :image %>
+          <%= f.label :image, "病院関係写真" %><br>
+          <p>(複数投稿する時は、Ctrlをおしながら画像を選択してください。)</p>
+          <%= f.attachment_field :hospital_images_images, multiple: true %>
         </div>
         <div class="hospital-address-post mb-3 pb-3">
           <%= f.label :address, "住所　" %>
@@ -32,12 +33,11 @@
       <% end %>
     </div>
     
-    <div class="col map-area">
-      <div id='map'></div>
+    <div class="col-lg-6 map-area">
+      <div id='map' class="ml-5"></div>
     </div>
   </div>
 </div>
-
 
 <script>
  $('#star').raty({
