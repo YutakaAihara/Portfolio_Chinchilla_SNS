@@ -1,0 +1,36 @@
+ja:
+  activerecord:
+    models:
+      owner: 飼い主さん
+      chinchilla: チンチラ
+      post: 投稿
+      hospital: 病院
+    attributes:
+      owner:
+        email: メールアドレス
+        password: パスワード
+        name: 名前
+        prefecture: 都道府県
+        image: プロフィール画像
+        introduction: 自己紹介
+      
+      chinchilla:
+        name: 名前
+        birthday: 誕生日
+        sex: 性別
+        fur_type: 毛色
+        introduction: チンチラの紹介
+        image: チンチラの画像
+        
+      post:
+        post_title: タイトル
+        post_body: 内容
+        image: 投稿画像
+        
+      hospital: 
+        hospital_name: 病院名
+        address: 住所
+        latitude: 緯度
+        longitude: 軽度
+        comment: 口コミ
+        rate: 評価

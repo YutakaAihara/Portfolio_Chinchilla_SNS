@@ -11,8 +11,6 @@
   </head>
 
   <body>
-    <p id="notice"><%= flash[:notice] %></p>
-    <p id="caution"><%= flash[:error] %></p>
     
     <main>
       <% if current_page?(root_path) %>
@@ -26,6 +24,7 @@
               <%= render "layouts/leftbar" %>
             </div>
             <div class="center col-lg-8 mt-5">
+              <%= render partial: 'layouts/notice' %>
               <%= yield %>
             </div>
             <div class="right-bar col-lg-2">

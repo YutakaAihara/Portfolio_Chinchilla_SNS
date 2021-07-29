@@ -15,10 +15,10 @@ class Public::ChinchillasController < ApplicationController
   end
   
   def create
-    chinchilla = Chinchilla.new(chinchilla_params)
-    if chinchilla.save
+    @chinchilla = Chinchilla.new(chinchilla_params)
+    if @chinchilla.save
       flash[:notice] = "チンチラが増えました！"
-      redirect_to chinchilla_path(chinchilla)
+      redirect_to chinchilla_path(@chinchilla)
     else
       @chinchilla = Chinchilla.new
       render :new

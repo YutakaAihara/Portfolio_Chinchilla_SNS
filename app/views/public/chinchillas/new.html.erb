@@ -1,4 +1,5 @@
 <h1>チンチラさんを登録</h1>
+<%= render "layouts/errors", object: @chinchilla %>
 <%= form_with model: @chinchilla, url: chinchillas_path, local: true do |f| %>
   <div class="field mt-3">
     <%= f.label :name, "チンチラさんの名前　" %>

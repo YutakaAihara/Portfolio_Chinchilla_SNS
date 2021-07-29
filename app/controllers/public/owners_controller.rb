@@ -1,5 +1,6 @@
 class Public::OwnersController < ApplicationController
  before_action :move_to_signed_in
+ before_action :ensure_owner, only: [:edit, :update]
  
   def show
     @owner = Owner.find(params[:id])
@@ -8,15 +9,17 @@ class Public::OwnersController < ApplicationController
   end
 
   def edit
-    @owner = Owner.find(params[:id])
-
     @random = Post.order("RANDOM()").limit(6)
   end
   
   def update
-    owner = Owner.find(params[:id])
-    owner.update(owner_params)
-    redirect_to owner_path(owner)
+    if @owner.update(owner_params)
+      flash[:notice] = "プロフィールの更新に成功しました！"
+      redirect_to owner_path(@owner)
+    else
+      @random = Post.order("RANDOM()").limit(6)
+      render :edit
+    end
   end
   
   def withdrawal_confirmation
@@ -43,5 +46,10 @@ class Public::OwnersController < ApplicationController
     unless owner_signed_in?
       redirect_to  'home'
     end
+  end
+
+  def ensure_owner
+    @owner = Owner.find(params[:id])
+    redirect_to owner_path(current_owner) unless @owner == current_owner
   end
 end

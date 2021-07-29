@@ -22,10 +22,10 @@ class Public::PostsController < ApplicationController
   end
   
   def create
-    post = Post.new(post_params)
-    if post.save
+    @post = Post.new(post_params)
+    if @post.save
       flash[:notice] = "投稿に成功しました！"
-      redirect_to posts_path
+      redirect_to post_path(@post)
     else
       render :new
     end

@@ -1,4 +1,5 @@
 <h2>飼い主さんの情報を更新する</h2>
+ <%= render "layouts/errors", object: @owner %>
  <%= form_with model: @owner, url: owner_path, method: :patch, local: true do |f| %>
   <div class="field mt-3">
     <%= f.label :name, '名前(ニックネーム)' %><br />

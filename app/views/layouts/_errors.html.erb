@@ -1,6 +1,6 @@
 <% if object.errors.any? %>
 <div class="error-messages">
-  <h3><%= pluralize(object.errors.count, "error") %> prohibited this obj from being saved:</h3>
+  <h3><%= object.errors.count %> 件のエラーが発生しました</h3>
   <ul>
       <% object.errors.full_messages.each do |message| %>
         <li>
