@@ -17,7 +17,11 @@ class Public::ChinchillasController < ApplicationController
   def create
     chinchilla = Chinchilla.new(chinchilla_params)
     if chinchilla.save
+      flash[:notice] = "チンチラが増えました！"
       redirect_to chinchilla_path(chinchilla)
+    else
+      @chinchilla = Chinchilla.new
+      render :new
     end
   end
 
@@ -33,7 +37,8 @@ class Public::ChinchillasController < ApplicationController
   
   def update
     if @chinchilla.update(chinchilla_params)
-      redirect_to chinchilla_path(chinchilla)
+      flash[:notice] = "チンチラの情報が更新されました！"
+      redirect_to chinchilla_path(@chinchilla)
     else
       @random = Post.order("RANDOM()").limit(6)
       render :edit

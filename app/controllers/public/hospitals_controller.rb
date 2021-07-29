@@ -24,8 +24,13 @@ class Public::HospitalsController < ApplicationController
   
   def create
     hospital = current_owner.hospitals.build(hospital_params)
-    hospital.save!
-    redirect_to hospital_path(hospital)
+    if hospital.save
+      flash[:notice] = "病院のレビューが投稿されました！"
+      redirect_to hospital_path(hospital)
+    else
+      @hospital = Hospital.new
+      render :new
+    end
   end
 
   def edit
@@ -34,7 +39,8 @@ class Public::HospitalsController < ApplicationController
   
   def update
     if @hospital.update(hospital_params)
-      redirect_to hospital_path(hospital)
+      flash[:notice] = "レビューの更新に成功しました！"
+      redirect_to hospital_path(@hospital)
     else
       @random = Post.order("RANDOM()").limit(6)
       render :edit

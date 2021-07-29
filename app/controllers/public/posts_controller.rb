@@ -23,8 +23,12 @@ class Public::PostsController < ApplicationController
   
   def create
     post = Post.new(post_params)
-    post.save
-    redirect_to posts_path
+    if post.save
+      flash[:notice] = "投稿に成功しました！"
+      redirect_to posts_path
+    else
+      render :new
+    end
   end
 
   def edit
@@ -33,6 +37,7 @@ class Public::PostsController < ApplicationController
   
   def update
     if @post.update(post_params)
+      flash[:notice] = "投稿の更新に成功しました！"
       redirect_to post_path(@post)
     else
       @random = Post.order("RANDOM()").limit(6)

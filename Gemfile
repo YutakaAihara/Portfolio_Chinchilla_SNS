@@ -72,6 +72,7 @@ gem "refile-mini_magick"
 gem 'geocoder'
 gem 'google'
 gem 'gon'
+gem 'rails-i18n'
 
 group :production do
   gem 'mysql2'

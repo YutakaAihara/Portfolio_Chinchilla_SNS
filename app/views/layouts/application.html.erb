@@ -11,7 +11,8 @@
   </head>
 
   <body>
-    <%= flash[:error] %>
+    <p id="notice"><%= flash[:notice] %></p>
+    <p id="caution"><%= flash[:error] %></p>
     
     <main>
       <% if current_page?(root_path) %>
