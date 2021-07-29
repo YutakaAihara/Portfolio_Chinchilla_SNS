@@ -1,7 +1,7 @@
 <div class="container owner-profile mt-auto mb-auto">
   <div class="row">
     <div class="col-5 owner-image">
-      <%= link_to owner_path(@owner) do %>
+        <%= link_to owner_path(@owner) do %>
           <%= attachment_image_tag @owner, :image, :fill, 200, 200, fallback: "pf-images/profile_noimage.png", size: "200x200", class: "owner-photo" %>
         <% end %>
     </div>
@@ -11,12 +11,14 @@
       <p><%= @owner.favorite_chinchillas.count %>ひきのチンチラさんをフォローしています</p>
       <div>
         <i class="fas fa-location-arrow"></i><span> <%= @owner.prefecture %></span>
-        <span><%= @owner.created_at.strftime('%Y年%m月') %>から森の住人です</span>
+        <span><%= @owner.created_at.strftime('%Y年%m月') %>から利用中です</span>
       </div>
-      <div class="mt-2">
-        <%= link_to "プロフィールを編集する", edit_owner_path(@owner), class: "btn btn-outline-primary btn-sm" %>
-        <%= link_to "退会する", withdrawal_path(@owner), class: "btn btn-outline-secondary btn-sm" %>
-      </div>
+          <div class="mt-2">
+        <% if current_owner == @owner %>
+            <%= link_to "プロフィールを編集する", edit_owner_path(@owner), class: "btn btn-outline-primary btn-sm" %>
+            <%= link_to "退会する", withdrawal_path(@owner), class: "btn btn-outline-secondary btn-sm" %>
+        <% end %>
+          </div>
     </div>
   </div>
 </div>
@@ -41,7 +43,7 @@
                <% end %>
              </h5>
              <p class="owner-chinchilla-follower ml-5 mr-3">フォロワー <%= chinchilla.favorite_chinchillas.count %></p>
-             <% if @owner = current_owner %>
+             <% if @owner == current_owner %>
                <div class="owner-chinchilla-edit-link">
                  <%= link_to "編集", edit_chinchilla_path(chinchilla), class: "btn btn-sm btn-outline-success mr-2" %>
                  <%= link_to "削除", chinchilla_path(chinchilla), method: :delete, class: "btn btn-sm btn-outline-danger" %>

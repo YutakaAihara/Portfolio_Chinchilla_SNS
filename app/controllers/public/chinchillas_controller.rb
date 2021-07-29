@@ -1,6 +1,6 @@
 class Public::ChinchillasController < ApplicationController
   def index
-    @chinchillas = Chinchilla.all
+    @chinchillas = Chinchilla.page(params[:page]).reverse_order
   end
 
   def new

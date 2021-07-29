@@ -1,6 +1,6 @@
 class Public::HospitalsController < ApplicationController
   def index
-    @hospitals = Hospital.all
+    @hospitals = Hospital.page(params[:page]).reverse_order
   end
 
   def show

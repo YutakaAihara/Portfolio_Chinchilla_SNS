@@ -12,7 +12,7 @@
             <td>
               <%= attachment_image_tag @chinchilla.owner, :image, :fill, 50, 50, fallback: "pf-images/profile_noimage.png", size: "50x50", class: "chinchilla-owner-image"%>
               <%= @chinchilla.owner.name %>
-              <% if @chinchilla.owner = current_owner %>
+              <% if @chinchilla.owner == current_owner %>
                 <span>
                   <%= link_to "編集", edit_chinchilla_path(@chinchilla) %>
                   <%= link_to "削除", chinchilla_path(@chinchilla), method: :delete %>
