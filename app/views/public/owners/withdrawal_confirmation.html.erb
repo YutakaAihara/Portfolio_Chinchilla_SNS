@@ -1,3 +1,10 @@
-<h1>本当に退会しますか？</h1>
-<%= link_to "退会する", withdrawal_path, method: :patch %>
-<%= link_to "退会しない", owner_path(current_owner) %>
+<div>
+  <h2>本当に退会しますか？</h2>
+  <div>
+    <p>退会する場合は、『退会する』をクリックしてください。</p>
+  </div>
+  <div>
+    <%= link_to "退会する", withdraw_owner_path(@owner), method: :patch, class: "btn btn-lg btn-danger" %>
+    <%= link_to "退会しない", owner_path(@owner), class: "btn btn-lg btn-primary"%>
+  </div>
+</div>

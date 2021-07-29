@@ -20,13 +20,14 @@ class Public::OwnersController < ApplicationController
   end
   
   def withdrawal_confirmation
-    @owner = Owner.find(params[:id])
+    @owner = Owner.find_by(id: params[:id])
 
     @random = Post.order("RANDOM()").limit(6)
   end
   
   def withdrawal
-    owner = Owner.find(params[:id])
+    owner = Owner.find_by(id: params[:id])
+    byebug
     owner.update(join_status: false)
     reset_session
     redirect_to root_path

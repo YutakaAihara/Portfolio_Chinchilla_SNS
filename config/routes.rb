@@ -15,8 +15,9 @@ Rails.application.routes.draw do
   
   scope module: :public do
     resources :owners, only: [:show, :edit, :update]
-    get 'withdrawal' => 'owners#withdrawal_confirmation'
-    patch 'withdrawal' =>'owners#withdrawal'
+    get 'confirmation/:id' => 'owners#withdrawal_confirmation', as: 'confirm_unsubscribe'
+    patch 'withdraw/:id' => 'owners#withdrawal', as: 'withdraw_owner'
+    put 'withdraw/:id' => 'ownerss#withdraw'    
     
     resources :chinchillas do
       resource :favorite_chinchillas, only: [:index, :create, :destroy]

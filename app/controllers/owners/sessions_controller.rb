@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Owners::SessionsController < Devise::SessionsController
-  before_action :reject_owner, only: [:create]
+  before_action :reject_inactive_owner, only: [:create]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -22,14 +22,15 @@ class Owners::SessionsController < Devise::SessionsController
 
   protected
   
-  def reject_owner
+  def reject_inactive_owner
     @owner = Owner.find_by(email: params[:owner][:email].downcase)
     if @owner
-      if @owner.valid_password?(params[:owner][:password]) && (@owner.active_for_authentication? == false)
+      if @owner.valid_password?(params[:owner][:password]) && @owner.join_status == false
         flash[:error] = "退会済みです。"
-        redirect_to new_owner_session_path
+        redirect_to root_path
       end
     else
+      redirect_to root_path
       flash[:error] = "必須項目を入力してください。"
     end
   end
