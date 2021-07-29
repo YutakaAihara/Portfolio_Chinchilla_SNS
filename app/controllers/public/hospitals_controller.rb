@@ -1,4 +1,7 @@
 class Public::HospitalsController < ApplicationController
+  before_action :move_to_signed_in
+  before_action :ensure_owner, only: [:edit, :update, :destroy]
+  
   def index
     @hospitals = Hospital.page(params[:page]).reverse_order
 
@@ -26,20 +29,20 @@ class Public::HospitalsController < ApplicationController
   end
 
   def edit
-    @hospital = Hospital.find(params[:id])
-    
     @random = Post.order("RANDOM()").limit(6)
   end
   
   def update
-    hospital = Hospital.find(params[:id])
-    hospital.update(hospital_params)
-    redirect_to hospital_path(hospital)
+    if @hospital.update(hospital_params)
+      redirect_to hospital_path(hospital)
+    else
+      @random = Post.order("RANDOM()").limit(6)
+      render :edit
+    end
   end
   
   def destroy
-    hospital = Hospital.find(params[:id])
-    hospital.destroy
+    @hospital.destroy
     redirect_to hospitals_path
   end
   
@@ -48,10 +51,15 @@ class Public::HospitalsController < ApplicationController
   def hospital_params
     params.require(:hospital).permit(:hospital_name, :address, :rate, :comment, :latitude, :longitude, :owner_id, hospital_images_images: [])
   end
-  
+
   def move_to_signed_in
     unless owner_signed_in?
       redirect_to  'home'
     end
+  end
+  
+  def ensure_owner
+    @hospital = Hospital.find(params[:id])
+    redirect_to owner_path(current_owner) unless @hospital.owner == current_owner
   end
 end

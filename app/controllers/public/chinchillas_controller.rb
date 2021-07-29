@@ -32,15 +32,16 @@ class Public::ChinchillasController < ApplicationController
   end
   
   def update
-    if chinchilla.update(chinchilla_params)
+    if @chinchilla.update(chinchilla_params)
       redirect_to chinchilla_path(chinchilla)
     else
+      @random = Post.order("RANDOM()").limit(6)
       render :edit
     end
    end
   
   def destroy
-    chinchilla.destroy
+    @chinchilla.destroy
     redirect_to owner_path(current_owner)
   end
   

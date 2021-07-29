@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
    before_action :move_to_signed_in
+   before_action :ensure_owner, only: [:edit, :update, :destroy]
    
   def index
     @posts = Post.page(params[:page]).reverse_order
@@ -27,20 +28,20 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
-    
     @random = Post.order("RANDOM()").limit(6)
   end
   
   def update
-    post = Post.find(params[:id])
-    post.update(post_params)
-    redirect_to post_path(post)
+    if @post.update(post_params)
+      redirect_to post_path(@post)
+    else
+      @random = Post.order("RANDOM()").limit(6)
+      render :edit
+    end
   end
   
   def destroy
-    post = Post.find(params[:id])
-    post.destroy
+    @post.destroy
     redirect_to posts_path
   end
   
@@ -54,5 +55,10 @@ class Public::PostsController < ApplicationController
     unless owner_signed_in?
       redirect_to  'home'
     end
+  end
+  
+  def ensure_owner
+    @post = Post.find(params[:id])
+    redirect_to owner_path(current_owner) unless @post.chinchilla.owner == current_owner
   end
 end

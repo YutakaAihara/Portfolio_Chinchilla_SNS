@@ -3,6 +3,12 @@
     <div class="col-lg-6 hospital-detail">
         <div class="detail-hosptal-name mb-3 pb-3">
           <h3><%= @hospital.hospital_name %></h3>
+          <% if @hospital.owner == current_owner %>
+          <span>
+            <%= link_to "編集", edit_hospital_path, class: "btn btn-sm btn-success" %> 
+            <%= link_to "削除", hospital_path, method: :delete, class: "btn btn-sm btn-danger" %> 
+          </span>
+          <% end %>
         </div>
         <div class="detail-hospital-address mb-3 pb-3">
           <%= @hospital.address %>
