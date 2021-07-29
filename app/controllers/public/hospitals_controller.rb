@@ -5,7 +5,7 @@ class Public::HospitalsController < ApplicationController
   def index
     @hospitals = Hospital.page(params[:page]).reverse_order
 
-    @random = Post.order("RAND()").limit(6)
+    @randoms = Post.order("RAND()").limit(6)
   end
 
   def show
@@ -13,13 +13,13 @@ class Public::HospitalsController < ApplicationController
     gon.latitude = @hospital.latitude
     gon.longitude = @hospital.longitude
     
-    @random = Post.order("RAND()").limit(6)
+    @randoms = Post.order("RAND()").limit(6)
   end
 
   def new
     @hospital = Hospital.new
 
-   @random = Post.order("RAND()").limit(6)
+   @randoms = Post.order("RAND()").limit(6)
   end
   
   def create
@@ -28,13 +28,13 @@ class Public::HospitalsController < ApplicationController
       flash[:notice] = "病院のレビューが投稿されました！"
       redirect_to hospital_path(@hospital)
     else
-      @random = Post.order("RAND()").limit(6)
+      @randoms = Post.order("RAND()").limit(6)
       render :new
     end
   end
 
   def edit
-    @random = Post.order("RANDOM()").limit(6)
+    @randoms = Post.order("RANDOM()").limit(6)
   end
   
   def update
@@ -42,7 +42,7 @@ class Public::HospitalsController < ApplicationController
       flash[:notice] = "レビューの更新に成功しました！"
       redirect_to hospital_path(@hospital)
     else
-      @random = Post.order("RAND()").limit(6)
+      @randoms = Post.order("RAND()").limit(6)
       render :edit
     end
   end

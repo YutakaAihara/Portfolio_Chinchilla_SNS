@@ -5,10 +5,12 @@
     </div>
     <div class="random-post mt-3">
       <p>おすすめの投稿</p>
-      <div class="d-flex flex-wrap"> 
-        <% @random.each do |post| %>
-          <%= link_to post_path(post) do %>
-            <%= attachment_image_tag post, :image, :fill, 100, 100, class: "random-image mt-1 mr-1" %>
+      <div class="d-flex flex-wrap">
+        <% if @randoms %>
+          <% @randoms.each do |post| %>
+            <%= link_to post_path(post) do %>
+              <%= attachment_image_tag post, :image, :fill, 100, 100, class: "random-image mt-1 mr-1" %>
+            <% end %>
           <% end %>
         <% end %>
       </div>
