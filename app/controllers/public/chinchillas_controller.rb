@@ -1,5 +1,6 @@
 class Public::ChinchillasController < ApplicationController
   before_action :move_to_signed_in
+  before_action :ensure_owner, only: [:edit, :update, :destroy]
   
   def index
     @chinchillas = Chinchilla.page(params[:page]).reverse_order
@@ -22,28 +23,25 @@ class Public::ChinchillasController < ApplicationController
 
   def show
     @chinchilla = Chinchilla.find(params[:id])
-
+    
     @random = Post.order("RANDOM()").limit(6)
   end
 
   def edit
-    @chinchilla = Chinchilla.find(params[:id])
-
     @random = Post.order("RANDOM()").limit(6)
   end
   
   def update
-    chinchilla = Chinchilla.find(params[:id])
     if chinchilla.update(chinchilla_params)
       redirect_to chinchilla_path(chinchilla)
+    else
+      render :edit
     end
-  end
+   end
   
   def destroy
-    chinchilla = Chinchilla.find(params[:id])
-    if chinchilla.destroy
-      redirect_to chinchillas_path
-    end
+    chinchilla.destroy
+    redirect_to owner_path(current_owner)
   end
   
   private
@@ -56,5 +54,10 @@ class Public::ChinchillasController < ApplicationController
     unless owner_signed_in?
       redirect_to  'home'
     end
+  end
+  
+  def ensure_owner
+    @chinchilla = Chinchilla.find(params[:id])
+    redirect_to owner_path(current_owner) unless @chinchilla.owner == current_owner
   end
 end
