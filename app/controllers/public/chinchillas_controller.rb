@@ -1,10 +1,16 @@
 class Public::ChinchillasController < ApplicationController
+  before_action :move_to_signed_in
+  
   def index
     @chinchillas = Chinchilla.page(params[:page]).reverse_order
+
+    @random = Post.order("RANDOM()").limit(6)
   end
 
   def new
     @chinchilla = Chinchilla.new
+
+    @random = Post.order("RANDOM()").limit(6)
   end
   
   def create
@@ -16,10 +22,14 @@ class Public::ChinchillasController < ApplicationController
 
   def show
     @chinchilla = Chinchilla.find(params[:id])
+
+    @random = Post.order("RANDOM()").limit(6)
   end
 
   def edit
     @chinchilla = Chinchilla.find(params[:id])
+
+    @random = Post.order("RANDOM()").limit(6)
   end
   
   def update
@@ -40,5 +50,11 @@ class Public::ChinchillasController < ApplicationController
   
   def chinchilla_params
     params.require(:chinchilla).permit(:name, :birthday, :sex, :fur_type, :introduction, :image, :owner_id)
+  end
+  
+  def move_to_signed_in
+    unless owner_signed_in?
+      redirect_to  'home'
+    end
   end
 end

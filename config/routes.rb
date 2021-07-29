@@ -13,9 +13,6 @@ Rails.application.routes.draw do
     sessions: 'admins/sessions',
   }
   
-  namespace :public do
-    get 'favorite_posts/index'
-  end
   scope module: :public do
     resources :owners, only: [:show, :edit, :update]
     get 'withdrawal' => 'owners#withdrawal_confirmation'

@@ -1,7 +1,20 @@
 <h1>投稿一覧</h1>
-<% @posts.each do |post| %>
-  <%= attachment_image_tag post, :image, :fill, 200, 200 %>
-  <%= link_to "#{post.post_title}", post_path(post) %>
-  <%= post.chinchilla.name %>ちゃん
-  <%= link_to "#{post.post_comments.count} コメント", post_path(post) %>
-<% end %>
+<%= link_to "投稿する", new_post_path, class: "btn btn-primary btn-sm mt-2 mb-2" %>
+<div class="posts d-flex d-flex justify-content-around  flex-wrap">
+  <% @posts.each do |post| %>
+    <div class="index-post-card px-2 mt-2">
+      <div class="index-post-image mt-2">
+        <%= link_to post_path(post) do %>
+          <%= attachment_image_tag post, :image, :fill, 150, 150, fallback: "pf-images/photo_noimage.png", size: "150x150", class: "index-post-image" %>
+        <% end %>
+      </div>
+      <div class="index-post-title ml-1 mt-2">
+        <strong><%= link_to "#{post.post_title}", post_path(post) %></strong>
+      </div>
+      <div class="index-post-chinchilla ml-1 mb-1">
+        <%= link_to "#{post.chinchilla.name}", chinchilla_path(post.chinchilla) %>
+      </div>
+    </div>
+  <% end %>
+  <%= paginate @posts %>
+</div>

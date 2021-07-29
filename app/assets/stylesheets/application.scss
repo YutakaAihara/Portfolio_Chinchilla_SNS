@@ -63,6 +63,17 @@ body {
 .left-bar{
     font-size: 1.2em;
 }
+
+
+// 右サイドバー
+.right-bar{
+    font-size: 1.2em;
+}
+
+.random-image{
+    border-radius: 10%;
+}
+
 // ユーザ詳細
 .owner-profile {
     background-color: rgb(216, 179, 146);
@@ -131,6 +142,19 @@ body {
 .index-chinchilla-image {
     border-radius: 10%;   
 }
+
+
+// 投稿一覧
+
+.index-post-card {
+    background:  rgb(216, 179, 146);
+    border-radius: 10%;
+}
+
+.index-post-image {
+    border-radius: 10%;   
+}
+
 // 病院投稿画面
 .hospital-new {
     

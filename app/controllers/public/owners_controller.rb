@@ -1,11 +1,16 @@
 class Public::OwnersController < ApplicationController
-
+ before_action :move_to_signed_in
+ 
   def show
     @owner = Owner.find(params[:id])
+
+    @random = Post.order("RANDOM()").limit(6)
   end
 
   def edit
     @owner = Owner.find(params[:id])
+
+    @random = Post.order("RANDOM()").limit(6)
   end
   
   def update
@@ -16,6 +21,8 @@ class Public::OwnersController < ApplicationController
   
   def withdrawal_confirmation
     @owner = Owner.find(params[:id])
+
+    @random = Post.order("RANDOM()").limit(6)
   end
   
   def withdrawal
@@ -29,5 +36,11 @@ class Public::OwnersController < ApplicationController
   
   def owner_params
     params.require(:owner).permit(:name, :email, :prefecture, :image, :introduction)
+  end
+  
+  def move_to_signed_in
+    unless owner_signed_in?
+      redirect_to  'home'
+    end
   end
 end
