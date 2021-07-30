@@ -4,5 +4,12 @@ class Question < ApplicationRecord
   has_many :question_comments, dependent: :destroy
   accepts_attachments_for :question_images, attachment: :image
   
+  validates :question_title, presence: true,
+                             length: { in: 2..30 }
+                             
+  validates :question_body, presence: true
   
+  validates :solution_status, presence: true,
+                              inclusion: { in: [true, false] }
+                          
 end
