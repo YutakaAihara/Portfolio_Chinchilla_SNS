@@ -7,7 +7,7 @@ class Chinchilla < ApplicationRecord
   validates :birthday, presence: true
   validates :sex, presence: true
   validates :fur_type, presence: true
-  validates :introduction, length: { in: 1..100 }
+  validates :introduction, length: { maximum: 140 }
   
   
   attachment :image

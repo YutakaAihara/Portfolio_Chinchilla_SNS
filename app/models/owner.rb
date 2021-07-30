@@ -24,7 +24,7 @@ class Owner < ApplicationRecord
   
   validates :prefecture, presence: true
   
-  validates :introduction, length: { in: 2..140 }
+  validates :introduction, length: { maximum }
                        
   
  enum prefecture:{
