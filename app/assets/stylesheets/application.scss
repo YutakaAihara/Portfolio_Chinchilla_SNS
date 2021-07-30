@@ -72,12 +72,14 @@ body {
 // 左サイドバー
 .left-bar{
     font-size: 1.2em;
+    border-right: 1px solid rgb(216, 179, 146);
 }
 
 
 // 右サイドバー
 .right-bar{
     font-size: 1.2em;
+    border-left: 1px solid rgb(216, 179, 146);
 }
 
 .random-image{
@@ -213,7 +215,7 @@ body {
         left: -30px;
         margin-top: -15px;
         border: 15px solid transparent;
-        border-right: 15px solid rgb(216, 179, 146);
+        border-right: 15px solid rgb(193, 179, 137);
     }
 }
 
@@ -245,4 +247,16 @@ body {
 }
 
 
+// 相談一覧画面
+.question-form {
+    background: rgb(193, 179, 137);
+    border-radius: 10%/50%;
+    width: 100%;
+}
+.question-body {
+    width: 100%;
+}
 
+.question-info {
+    background: rgb(193, 179, 137);
+}

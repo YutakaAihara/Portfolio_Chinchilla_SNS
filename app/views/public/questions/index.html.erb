@@ -1,26 +1,40 @@
-<h1>相談</h1>
-<h2>新しく相談する</h2>
-<%= form_with model: @question, url: questions_path, local: true do |f| %>
-  <%= f.label :question_title, 'タイトル' %>
-  <%= f.text_field :question_title %>
-  
-  <%= f.label :question_body, '相談内容' %>
-  <%= f.text_area :question_body %>
-  
-  <%= f.label :question_images_mages, '画像をつける' %>
-  <%= f.attachment_field :question_images_images, multiple: true %>
-  
-  <%= f.submit "相談を投稿する" %>
-<% end %>
-
-<h2>相談一覧</h2>
-<% @questions.each do |question| %>
-  <%= link_to "#{question.question_title}", question_path(question) %>
-  <%= question.owner.name %>
-  <p><%= link_to "#{question.question_comments.count} コメント", question_path(question) %></p>
-  <% if question.solution_status == true %>
-    <p>解決済み</p>
-  <% else %>
-    <p>コメント募集中</p>
+<h2>お悩み相談</h2>
+<div class="question-form pt-3 pl-5 pr-5 pb-3 mt-2">
+  <%= render "layouts/errors", object: @question %>
+  <%= form_with model: @question, url: questions_path, local: true do |f| %>
+    <div class="field mt-1">
+      <%= f.label :question_title, 'タイトル' %><br>
+      <%= f.text_field :question_title %>  
+    </div>
+    <div class="field mt-2">
+      <%= f.label :question_body, '相談内容' %><br>
+      <%= f.text_area :question_body, class: "question-body" %>
+    </div>
+    <div class="field mt-2">
+      <%= f.label :question_images_mages, '画像をつける' %>
+      <%= f.attachment_field :question_images_images, multiple: true %>
+    </div>
+    
+    <div class="action text-right mr-5">
+      <%= f.submit "相談を投稿する", class: "btn btn-primary" %>
+    </div>
   <% end %>
-<% end %>
+</div>
+<div class="question-index mt-5">
+  <% @questions.each do |question| %>
+    <div class="question-info mt-3 pt-3 pl-3 pb-3 pr-3">
+      <div class="question-title">
+        <h3><%= link_to "#{question.question_title}", question_path(question) %></h3>
+      </div>
+      <span class="solution mr-3">
+        <% if question.solution_status == true %>
+          <span class="solved">解決済み</span>
+        <% else %>
+          <span class="unsolved">コメント募集中</span>
+        <% end %>
+      </span>
+      <span class="mr-3"><%= question.question_comments.count %>件のコメント</span>
+      <span class="mr-3"><%= question.created_at.strftime('%Y/%m %H:%M') %></span>
+    </div>
+  <% end %>
+</div>

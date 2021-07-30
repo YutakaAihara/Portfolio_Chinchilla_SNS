@@ -34,3 +34,7 @@ ja:
         longitude: 軽度
         comment: 口コミ
         rate: 評価
+        
+      question:
+        question_title: 相談のタイトル
+        question_body: 相談内容

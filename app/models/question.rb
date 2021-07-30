@@ -9,7 +9,6 @@ class Question < ApplicationRecord
                              
   validates :question_body, presence: true
   
-  validates :solution_status, presence: true,
-                              inclusion: { in: [true, false] }
+  validates :solution_status, inclusion: { in: [true, false] }
                           
 end

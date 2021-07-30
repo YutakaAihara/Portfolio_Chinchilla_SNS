@@ -14,7 +14,7 @@
           <%= @hospital.address %>
         </div>
         <div class="detail-hospital-rate mb-3 pb-3">
-          <p><%= @hospital.rate %>点</p>
+          <p><%= @hospital.owner.name %>さんの評価：<%= @hospital.rate %>点</p>
           <div class="hospital-rate"></div>
         </div>
         <div class="detail-hospital-comment mb-3 pb-3">
