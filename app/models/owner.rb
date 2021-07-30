@@ -19,7 +19,6 @@ class Owner < ApplicationRecord
             uniqueness: true
   
   validates :password, presence: true,
-                       length: { in: 6..12 }
                        
   validates :name, presence: true
   
