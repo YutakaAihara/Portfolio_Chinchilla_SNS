@@ -13,6 +13,21 @@ class Owner < ApplicationRecord
   has_many :favorite_chinchillas, dependent: :destroy
   attachment :image
   
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true,
+            format: { with: VALID_EMAIL_REGEX },
+            uniqueness: true
+  
+  validates :password, presence: true,
+                       length: { in: 6..12 }
+                       
+  validates :name, presence: true
+  
+  validates :prefecture, presence: true
+  
+  validates :introduction, length: { in: 2..140 }
+                       
+  
  enum prefecture:{
      "---":0,
      北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
