@@ -73,6 +73,7 @@ body {
 .left-bar{
     font-size: 1.2em;
     border-right: 1px solid rgb(216, 179, 146);
+    height: 100;
 }
 
 
@@ -80,6 +81,7 @@ body {
 .right-bar{
     font-size: 1.2em;
     border-left: 1px solid rgb(216, 179, 146);
+    height: 100;
 }
 
 .random-image{
@@ -203,11 +205,9 @@ body {
     position: relative;
     margin: 1em 0 1em 15px;
     padding: 7px 15px;
-    min-width: 120px;
-    max-width: 800px;
+    width: 90vh;
     font-size: 20px;
-    background: rgb(216, 179, 146);
-    border-radius: 10%/10%;
+    background: rgb(193, 179, 137);
     :before {
         content: "";
         position: absolute;
@@ -217,6 +217,9 @@ body {
         border: 15px solid transparent;
         border-right: 15px solid rgb(193, 179, 137);
     }
+.comment-body-content {
+    width: 100%;
+}
 }
 
 // 病院投稿画面・編集画面
@@ -226,8 +229,8 @@ body {
 }
 
 #map {
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
 }
 
 .comment-area {
@@ -242,8 +245,8 @@ body {
 }
 
 #show_map {
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
 }
 
 
@@ -260,3 +263,21 @@ body {
 .question-info {
     background: rgb(193, 179, 137);
 }
+
+.solved {
+    color: rgb(232, 63, 95);
+}
+
+.unsolved {
+    color: rgb(0, 104, 183);
+}
+
+// 相談詳細
+.question-owner-image {
+    border-radius: 50%;
+}
+
+.question-body {
+    font-size: 25px;
+}
+

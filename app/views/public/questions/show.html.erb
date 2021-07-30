@@ -1,43 +1,89 @@
-<h1><%= @question.question_title %></h1>
-<%= @question.question_body %>
-<% if @question.question_images.present? %>
-  <% @question.question_images.each do |image| %>
-    <%= attachment_image_tag image, :image, :fill, 200, 200 %>
-  <% end %>
-<% end %>
-
-<div class="comments">
-<p>コメント件数：<%= @question.question_comments.count %></p>
-<% @question.question_comments.each do |question_comment| %>
-  <p><%= attachment_image_tag question_comment.owner, :image, :fill, 100, 100, fallback: "pf-images/profile_noimage.png", size: "100x100" %></p>
-  <%= question_comment.owner.name %>
-  <%= question_comment.created_at.strftime('%Y/%m/%d') %><%= question_comment.comment %>
-  <% if question_comment.owner == current_owner %>
-  <div class="comment-delete">
-    <%= link_to "削除", question_question_comment_path(question_comment.question, question_comment), method: :delete %>
+<div class="question-head d-flex justyfy-content-center align-items-center ml-2">
+  <h1>「<%= @question.question_title %>」</h1>
+  <div class="question-owner-image">
+    <%= attachment_image_tag @question.owner, :image, :fill, 50, 50, fallback: asset_path("pf-images/profile_noimage.png"), size: "50x50", class: "question-owner-image mr-2" %>
   </div>
-  <% end %>
-<% end %>
+  <div class="mr-2">
+    <%= @question.owner.name %>
+  </div>
+  <div class="question-datetime mr-3">
+    <%= @question.created_at.strftime('%Y/%m %H:%M') %>
+  </div>
+  <div class="question-solution mr-3">
+    <% if @question.solution_status == true %>
+      <span class="solved">解決済</sapn>
+    <% else %>
+      <span class="unsolved">未解決</span>
+    <% end %>
+  </div>
+    <% if @question.owner == current_owner %>
+      <div class="change-status">
+        <% if @question.solution_status == true %>
+          <%= link_to "未解決にする", solved_path(id: @question.id), method: :patch, class: "btn btn-outline-primary btn-sm" %>
+        <% else %>
+          <%= link_to "解決済みにする", solved_path(id: @question.id), method: :patch, class: "btn btn-outline-primary btn-sm" %>
+        <% end %>
+      </div>
+    <% end %>
 </div>
-<div class="new-comment">
-<%= form_with(model:[@question, @question_comment], local: true) do |f| %>
-  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
-<% end %>
+<div class="question-content mt-4 ml-3 mr-3">
+    <p><strong>< 相談内容 ></strong></p>
+  <div class="question-body">
+    <%= @question.question_body %>
+  </div>
 </div>
-
-<% if @question.solution_status == true %>
-  <p>解決済み</p>
-<% else %>
-  <p>コメント募集中</p>
-<% end %>
-
-<% if @question.owner == current_owner %>
-  <%= link_to "編集する", edit_question_path %>
-  <% if @question.solution_status == true %>
-    <%= link_to "未解決にする", solved_path(id: @question.id), method: :patch %>
-  <% else %>
-    <%= link_to "解決済みにする", solved_path(id: @question.id), method: :patch %>
+  <% if @question.question_images.present? %>
+    <div class="question-images mt-3 ml-3 mr-3">
+      <p><strong>< 関連画像 ></strong></p>
+      <% @question.question_images.each do |image| %>
+        <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+      <% end %>
+    </div>
   <% end %>
+  <% if current_owner == @question.owner %>
+    <div class="edit-btn mt-2">
+      <%= link_to "編集する", edit_question_path, class: "btn btn-success" %>
+    </div>
+  <% end %>
+  
+  <% if @question.question_comments %>
+   <div class="comments mt-5">
+      <h3>コメント</h3>
+      <% @question.question_comments.each do |comment| %>
+        <div class="d-flex align-items-center mt-0">
+          <div class="d-flex flex-column justyfy-content-center align-items-center">
+            <div class="comment-owner-image">
+              <%= attachment_image_tag comment.owner, :image, :fill, 50, 50, fallback: "pf-images/profile_noimage.png", size: "50x50", class: "comment-owner-image" %>
+            </div>
+            <div class="comment-owner-name d-flex align-items-center justify-content-center">
+              <%= link_to "#{comment.owner.name}", owner_path(comment.owner.name) %>
+            </div>
+          </div>
+          
+          <div class="comment-body d-flex align-items-center flex-wrap">
+            <p class="comment-body-content"><%= comment.comment %></p>
+            <div class="ml-2">
+              <%= comment.created_at.strftime('%Y/%m/%d') %>
+            </div>
+            <% if comment.owner == current_owner %>
+            <div class="comment-delete ml-3">
+              <%= link_to "削除", question_question_comment_path(comment.question, comment), method: :delete, class: "btn btn-sm btn-outline-danger" %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>  
+  
+  <div class="new-comment ml-5 mt-5">
+    <h4>コメントする</h4>
+  <%= form_with model:[@question, @question_comment], local: true do |f| %>
+    <%= f.text_area :comment, rows:'5',placeholder: "コメントはこちらへ", class: "post-comment-area" %>
+    <div class="d-flex justify-content-end">
+      <%= f.submit "送信する", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+  </div>
 
-<% end %>
+
