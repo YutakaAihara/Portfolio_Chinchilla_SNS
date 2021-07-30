@@ -1,13 +1,19 @@
 <h2>相談内容を編集</h2>
 <%= form_with model: @question, url: question_path(@question), local: true do |f| %>
-  <%= f.label :question_title, 'タイトル' %>
-  <%= f.text_field :question_title %>
-  
-  <%= f.label :question_body, '相談内容' %>
-  <%= f.text_area :question_body %>
-  
-  <%= f.label :question_images_mages, '画像をつける' %>
-  <%= f.attachment_field :question_images_images, multiple: true %>
-  
-  <%= f.submit "相談を更新する" %>
+    <div class="field mt-1">
+      <%= f.label :question_title, 'タイトル' %><br>
+      <%= f.text_field :question_title %>  
+    </div>
+    <div class="field mt-2">
+      <%= f.label :question_body, '相談内容' %><br>
+      <%= f.text_area :question_body, class: "question-body" %>
+    </div>
+    <div class="field mt-2">
+      <%= f.label :question_images_mages, '画像をつける' %>
+      <%= f.attachment_field :question_images_images, multiple: true %>
+    </div>
+    
+    <div class="action text-right mr-5">
+      <%= f.submit "相談を投稿する", class: "btn btn-primary" %>
+    </div>
 <% end %>
