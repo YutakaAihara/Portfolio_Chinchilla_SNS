@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   validates :post_title, presence: true,
                          length: { maximum: 20 }
   
-  validaets :post_body, length: { in: 2..140 }
+  validates :post_body, length: { in: 2..140 }
   
   validates :image_id, presence: true
                        
