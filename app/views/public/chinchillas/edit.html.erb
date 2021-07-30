@@ -1,5 +1,5 @@
 <h1>チンチラさんの情報を編集</h1>
-<%= render "layouts/errors", object: @chinchilla0 %>
+<%= render "layouts/errors", object: @chinchilla %>
 <%= form_with model: @chinchilla, url: chinchilla_path(@chinchilla), local: true do |f| %>
    <div class="field mt-3">
     <%= f.label :name, "チンチラさんの名前　" %>
