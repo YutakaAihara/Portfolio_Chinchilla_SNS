@@ -18,7 +18,7 @@ class Owner < ApplicationRecord
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: true
   
-  validates :password, presence: true,
+  validates :password, presence: true
                        
   validates :name, presence: true
   
