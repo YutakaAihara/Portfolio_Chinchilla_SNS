@@ -9,7 +9,7 @@ class Public::OwnersController < ApplicationController
   end
 
   def edit
-    @randoms = Post.order("RAND()").limit(6))
+    @randoms = Post.order("RAND()").limit(6)
   end
   
   def update
