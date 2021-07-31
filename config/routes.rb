@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:destroy]
     end
     
-    resources :owners, only: [:index, :update]
+    resources :owners, only: [:index, :destroy]
     
     resources :questions, only: [:index, :destroy, :show] do
       resources :question_comments, only: [:destroy]

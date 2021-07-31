@@ -5,20 +5,20 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.page(params[:page]).reverse_order
     
-    @randoms = Post.limit(6)
+    # @randoms = Post.limit(6)
   end
 
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
     
-    @randoms = Post.limit(6)
+    # @randoms = Post.limit(6)
   end
 
   def new
     @post = Post.new
 
-    @randoms = Post.limit(6)
+    # @randoms = Post.limit(6)
   end
   
   def create
@@ -32,7 +32,7 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-    @randoms = Post.limit(6)
+    # @randoms = Post.limit(6)
   end
   
   def update
@@ -40,7 +40,7 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "投稿の更新に成功しました！"
       redirect_to post_path(@post)
     else
-     @randoms = Post.limit(6)
+    # @randoms = Post.limit(6)
       render :edit
     end
   end
