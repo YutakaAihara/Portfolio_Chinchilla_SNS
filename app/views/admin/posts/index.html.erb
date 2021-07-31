@@ -4,7 +4,7 @@
     <tr>
       <th scope="col">画像</th>
       <th scope="col">タイトル</th>
-      <th scope="col">文章</th>
+      <th scope="col">投稿チンチラ</th>
       <th scope="col">投稿者</th>
       <th scope="col"></th>
     </tr>
@@ -16,8 +16,9 @@
             <%= attachment_image_tag post, :image, :fill, 50,50 %>
           </td>
           <td><%= post.post_title %></td>
-          <td><%= post.post_body %></td>
+          <td><%= post.chinchilla.name %></td>
           <td><%= post.chinchilla.owner.name %></td>
+          <td><%= link_to "この投稿のコメント", admin_post_path(post), class: "btn btn-sm btn-primary" %></td>
           <td><%= link_to "削除", admin_post_path(post), method: :delete, class: "btn btn-sm btn-danger" %></td>
         </tr>
         

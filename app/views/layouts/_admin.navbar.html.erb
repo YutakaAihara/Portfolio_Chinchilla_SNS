@@ -5,19 +5,22 @@
       <% end %>
     </div>
     <div>
-      <%= link_to " 飼い主一覧", admin_owners_path, class: "fas fa-user mt-3 mb-3" %>
+      <%= link_to " 飼い主", admin_owners_path, class: "fas fa-user mt-3 mb-3" %>
     </div>
     <div>
-      <%= link_to " チンチラ一覧", admin_chinchillas_path, class: "fas fa-paw mt-3 mb-3" %>
+      <%= link_to " チンチラ", admin_chinchillas_path, class: "fas fa-paw mt-3 mb-3" %>
     </div>
     <div>
-      <%= link_to " 投稿一覧", admin_posts_path, class: "fas fa-carrot mt-3 mb-3" %>
+      <%= link_to " 投稿", admin_posts_path, class: "fas fa-carrot mt-3 mb-3" %>
     </div>
     <div>
-      <%= link_to " 病院レビュー一覧", admin_hospitals_path, class: "fas fa-hospital-alt mt-3 mb-3" %>
+      <%= link_to " 病院レビュー", admin_hospitals_path, class: "fas fa-hospital-alt mt-3 mb-3" %>
     </div>
     <div>
-      <a href="#" class="fas fa-users mt-3 mb-3" style="color: gray;"> コミュニティ一覧</a>
+      <%= link_to " 相談", admin_questions_path, class: "fas fa-question mt-3 mb-3" %>
+    </div>
+    <div>
+      <a href="#" class="fas fa-users mt-3 mb-3" style="color: gray;"> コミュニティ</a>
     </div>
      <div>
       <%= link_to " ログアウト", destroy_admin_session_path, method: :delete, class: "fas fa-sign-out-alt mt-3 mb-3" %>

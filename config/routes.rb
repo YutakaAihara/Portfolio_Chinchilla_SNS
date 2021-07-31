@@ -20,9 +20,19 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :hospitals, only: [:index, :destroy]
+    
     resources :chinchillas, only: [:index, :destroy]
-    resources :posts, only: [:index, :destroy]
+    
+    resources :posts, only: [:index, :destroy, :show] do
+      resources :post_comments, only: [:destroy]
+    end
+    
     resources :owners, only: [:index, :update]
+    
+    resources :questions, only: [:index, :destroy, :show] do
+      resources :question_comments, only: [:destroy]
+    end
+    
   end
 
     

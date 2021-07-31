@@ -3,7 +3,7 @@ class Public::QuestionsController < ApplicationController
   before_action :ensure_owner, only: [:edit, :update, :destroy]
   
   def index
-    @questions = Question.all
+    @questions = Question.page(params[:page]).reverse_order
     @question = Question.new
     @randoms = Post.order("RANDOM()").limit(6)
   end

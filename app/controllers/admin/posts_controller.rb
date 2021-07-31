@@ -4,6 +4,10 @@ class Admin::PostsController < ApplicationController
     @posts = Post.page(params[:page]).reverse_order
   end
   
+  def show
+    @post = Post.find(params[:id])
+  end
+  
   def destroy
     post = Post.find(params[:id])
     post.destroy

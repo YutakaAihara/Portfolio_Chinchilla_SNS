@@ -1,0 +1,21 @@
+<h2><%= @question.question_title %>へのコメント一覧</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">コメントした人</th>
+      <th scope="col">内容</th>
+      <th scope="col">コメント日時</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @question.question_comments.each do |comment| %>
+        <tr>
+          <td><%= comment.owner.name %></td>
+          <td><p style="max-width: 500px;"><%= comment.comment %></p></td>
+          <td><%= comment.created_at.strftime("%Y/%m %H:%M") %></td>
+          <td><%= link_to "削除", admin_question_question_comment_path(comment.question, comment), method: :delete, class: "btn btn-sm btn-danger" %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
