@@ -31,16 +31,8 @@
           <td><%= @chinchilla.introduction %></td>
         </tr>
           <tr>
-            <td>
-              <% if @chinchilla.favorited_by?(current_owner) %>
-                    <%= link_to chinchilla_favorite_chinchillas_path(@chinchilla), method: :delete do %>
-                      ♥　<%= @chinchilla.favorite_chinchillas.count %> 人
-                    <% end %>
-              <% else %>
-                    <%= link_to chinchilla_favorite_chinchillas_path(@chinchilla), method: :post do %>
-                      ♡　<%= @chinchilla.favorite_chinchillas.count %> 人
-                    <% end %>
-              <% end %>
+            <td class="favorite-chinchilla-<%= @chinchilla.id %>">
+              <%= render "public/favorite_chinchillas/favorite", { chinchilla: @chinchilla } %>
             </td>
           </tr>
           <tr>
