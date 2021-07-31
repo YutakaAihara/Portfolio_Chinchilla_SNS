@@ -1,0 +1,6 @@
+  <%= form_with model:[question, question_comment], remote: true do |f| %>
+    <%= f.text_area :comment, rows:'5',placeholder: "コメントはこちらへ", class: "post-comment-area" %>
+    <div class="d-flex justify-content-end">
+      <%= f.submit "送信する", class: "btn btn-primary" %>
+    </div>
+  <% end %>

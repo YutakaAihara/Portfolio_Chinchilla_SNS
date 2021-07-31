@@ -1,0 +1,3 @@
+  
+$(".comment-<%= @question.id %>").html("<%= j(render 'public/question_comments/comment_list', {question: @question, question_comment: @question_comment}) %>");
+$("textarea").val('');

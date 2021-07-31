@@ -1,12 +1,12 @@
+<h1>「<%= @question.question_title %>」</h1>
 <div class="question-head d-flex justyfy-content-center align-items-center ml-2">
-  <h1>「<%= @question.question_title %>」</h1>
   <div class="question-owner-image">
     <%= attachment_image_tag @question.owner, :image, :fill, 50, 50, fallback: asset_path("pf-images/profile_noimage.png"), size: "50x50", class: "question-owner-image mr-2" %>
   </div>
   <div class="mr-2">
     <%= @question.owner.name %>
   </div>
-  <div class="question-datetime mr-3">
+  <div class="question-datetime">
     <%= @question.created_at.strftime('%Y/%m %H:%M') %>
   </div>
   <div class="question-solution mr-3">
@@ -49,41 +49,15 @@
   <% if @question.question_comments %>
    <div class="comments mt-5">
       <h3>コメント</h3>
-      <% @question.question_comments.each do |comment| %>
-        <div class="d-flex align-items-center mt-0">
-          <div class="d-flex flex-column justyfy-content-center align-items-center">
-            <div class="comment-owner-image">
-              <%= attachment_image_tag comment.owner, :image, :fill, 50, 50, fallback: "pf-images/profile_noimage.png", size: "50x50", class: "comment-owner-image" %>
-            </div>
-            <div class="comment-owner-name d-flex align-items-center justify-content-center">
-              <%= link_to "#{comment.owner.name}", owner_path(comment.owner.name) %>
-            </div>
-          </div>
-          
-          <div class="comment-body d-flex align-items-center flex-wrap">
-            <p class="comment-body-content"><%= comment.comment %></p>
-            <div class="ml-2">
-              <%= comment.created_at.strftime('%Y/%m/%d') %>
-            </div>
-            <% if comment.owner == current_owner %>
-            <div class="comment-delete ml-3">
-              <%= link_to "削除", question_question_comment_path(comment.question, comment), method: :delete, class: "btn btn-sm btn-outline-danger" %>
-            </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+      <div class=" comment-<%= @question.id %>">
+        <%= render "public/question_comments/comment_list", { question: @question } %>
+      </div>
     </div>
   <% end %>  
   
   <div class="new-comment ml-5 mt-5">
     <h4>コメントする</h4>
-  <%= form_with model:[@question, @question_comment], local: true do |f| %>
-    <%= f.text_area :comment, rows:'5',placeholder: "コメントはこちらへ", class: "post-comment-area" %>
-    <div class="d-flex justify-content-end">
-      <%= f.submit "送信する", class: "btn btn-primary" %>
-    </div>
-  <% end %>
+    <%= render "public/question_comments/comment_form", { question: @question, question_comment: @question_comment } %>
   </div>
 
 

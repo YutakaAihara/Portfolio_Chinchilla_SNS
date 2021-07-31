@@ -1,0 +1,24 @@
+    <% question.question_comments.each do |comment| %>
+      <div class="d-flex align-items-center mt-0">
+        <div class="d-flex flex-column justyfy-content-center align-items-center">
+          <div class="comment-owner-image">
+            <%= attachment_image_tag comment.owner, :image, :fill, 50, 50, fallback: "pf-images/profile_noimage.png", size: "50x50", class: "comment-owner-image" %>
+          </div>
+          <div class="comment-owner-name d-flex align-items-center justify-content-center">
+            <%= link_to "#{comment.owner.name}", owner_path(comment.owner.name) %>
+          </div>
+        </div>
+        
+        <div class="comment-body d-flex align-items-center flex-wrap">
+          <p class="comment-body-content"><%= comment.comment %></p>
+          <div class="ml-2">
+            <%= comment.created_at.strftime('%Y/%m/%d') %>
+          </div>
+          <% if comment.owner == current_owner %>
+          <div class="comment-delete ml-3">
+            <%= link_to "削除", question_question_comment_path(comment.question, comment), method: :delete, remote: true, class: "btn btn-sm btn-outline-danger" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
