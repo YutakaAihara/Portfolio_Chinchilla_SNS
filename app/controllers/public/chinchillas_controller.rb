@@ -29,11 +29,11 @@ class Public::ChinchillasController < ApplicationController
   def show
     @chinchilla = Chinchilla.find(params[:id])
     
-    @randoms = Post.order("RAND()").limit(6)
+    @randoms = Post.where('id >= ?', rand(Post.first.id..Post.last.id).limit(6)
   end
 
   def edit
-   @randoms = Post.order("RAND()").limit(6)
+   @randoms = Post.where('id >= ?', rand(Post.first.id..Post.last.id).limit(6)
   end
   
   def update
@@ -41,7 +41,7 @@ class Public::ChinchillasController < ApplicationController
       flash[:notice] = "チンチラの情報が更新されました！"
       redirect_to chinchilla_path(@chinchilla)
     else
-      @randoms = Post.order("RAND()").limit(6)
+      @randoms = Post.where('id >= ?', rand(Post.first.id..Post.last.id).limit(6)
       render :edit
     end
   end
