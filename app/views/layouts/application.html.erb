@@ -19,9 +19,12 @@
             <div class="left-bar col-lg-2">
               <%= render "layouts/leftbar" %>
             </div>
-            <div class="center col-lg-10 mt-5 pl-5 pr-5">
+            <div class="center col-lg-8 mt-5 pl-5 pr-5">
               <%= render partial: 'layouts/notice' %>
               <%= yield %>
+            </div>
+            <div class="right-bar col-lg-2">
+              <%= render 'layouts/rightbar' %>
             </div>
           </div>
         </div>
