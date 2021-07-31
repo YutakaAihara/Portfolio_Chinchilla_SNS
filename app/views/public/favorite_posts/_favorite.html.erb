@@ -1,0 +1,9 @@
+<% if post.favorited_by?(current_owner) %>
+  <%= link_to post_favorite_posts_path(post), method: :delete, remote: true do %>
+    ♥<%= post.favorite_posts.count %> いいね
+  <% end %>
+  <% else %>
+    <%= link_to post_favorite_posts_path(post), method: :post, remote:true do %>
+      ♡<%= post.favorite_posts.count %> いいね
+  <% end %>
+<% end %>   

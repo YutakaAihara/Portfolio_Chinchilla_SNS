@@ -12,16 +12,8 @@
           <span><%= @post.chinchilla.name %>ちゃんの投稿</span>
         <% end %>
             <div class="d-flex justify-content-end mt-3">
-              <span class="mr-3">
-                <% if @post.favorited_by?(current_owner) %>
-                  <%= link_to post_favorite_posts_path(@post), method: :delete do %>
-                    ♥<%= @post.favorite_posts.count %> いいね
-                  <% end %>
-                  <% else %>
-                    <%= link_to post_favorite_posts_path(@post), method: :post do %>
-                      ♡<%= @post.favorite_posts.count %> いいね
-                    <% end %>
-                <% end %>                
+              <span class="mr-3 favorite-post-<%= @post.id %>">
+                <%= render "public/favorite_posts/favorite", { post: @post } %>          
               </span>
               
               <% if @post.chinchilla.owner == current_owner %>
