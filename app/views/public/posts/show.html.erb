@@ -34,40 +34,15 @@
   </div>
   <div class="comments mt-5">
     <h3>コメント</h3>
-    <% @post.post_comments.each do |post_comment| %>
-      <div class="d-flex align-items-center mt-0">
-        <div class="d-flex flex-column justyfy-content-center align-items-center">
-          <div class="comment-owner-image">
-            <%= attachment_image_tag post_comment.owner, :image, :fill, 50, 50, fallback: "pf-images/profile_noimage.png", size: "50x50", class: "comment-owner-image" %>
-          </div>
-          <div class="comment-owner-name d-flex align-items-center justify-content-center">
-            <%= link_to "#{post_comment.owner.name}", owner_path(post_comment.owner.name) %>
-          </div>
-        </div>
-        
-        <div class="comment-body d-flex align-items-center flex-wrap">
-          <p class="comment-body-content"><%= post_comment.comment %></p>
-          <div class="ml-2">
-            <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-          </div>
-          <% if post_comment.owner == current_owner %>
-          <div class="comment-delete ml-3">
-            <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-sm btn-outline-danger" %>
-          </div>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
+    <div class="post-comment-<%= @post.id %>">
+      <%= render "public/post_comments/comment_list", { post: @post } %> 
+    </div>
+
   </div>
   
   <div class="new-comment ml-5 mt-5">
     <h4>コメントする</h4>
-  <%= form_with model:[@post, @post_comment], local: true do |f| %>
-    <%= f.text_area :comment, rows:'5',placeholder: "コメントはこちらへ", class: "post-comment-area" %>
-    <div class="d-flex justify-content-end">
-      <%= f.submit "送信する", class: "btn btn-primary" %>
-    </div>
-  <% end %>
+    <%= render "public/post_comments/comment_form", { post: @post, post_comment: @post_comment } %> 
   </div>
   
 
