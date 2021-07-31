@@ -5,7 +5,7 @@ class Public::QuestionsController < ApplicationController
   def index
     @questions = Question.page(params[:page]).reverse_order
     @question = Question.new
-    @randoms = Post.order("RAND()").limit(6)
+    @randoms = Post.limit(6)
   end
   
   def create
@@ -14,7 +14,7 @@ class Public::QuestionsController < ApplicationController
       flash[:notice] = "相談を投稿しました！"
       redirect_to question_path(@question)
     else
-      @randoms = Post.order("RAND()").limit(6)
+      @randoms = Post.limit(6)
       @questions = Question.all
       render :index
     end
@@ -23,12 +23,12 @@ class Public::QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @question_comment = QuestionComment.new
-    @randoms = Post.order("RAND()").limit(6)
+    @randoms = Post.limit(6)
   end
 
   def edit
     @question = Question.find(params[:id])
-    @randoms = Post.order("RAND()").limit(6)
+    @randoms = Post.limit(6)
   end
   
   def update
