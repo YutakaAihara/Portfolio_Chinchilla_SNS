@@ -28,7 +28,7 @@ class Public::PostsController < ApplicationController
       redirect_to post_path(@post)
     else
       render :new
-    end
+    endcd
   end
 
   def edit

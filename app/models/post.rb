@@ -9,7 +9,6 @@ class Post < ApplicationRecord
   
   validates :post_body, length: { in: 2..140 }
   
-  validates :image_id, presence: true
                        
   
   def favorited_by?(owner)
