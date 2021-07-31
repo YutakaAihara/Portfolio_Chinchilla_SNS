@@ -5,11 +5,11 @@ class Public::OwnersController < ApplicationController
   def show
     @owner = Owner.find(params[:id])
 
-    @recommends = Post.where('id >= ?', rand(Post.first.id..Post.last.id)).limit(6)
+    @recommends = Post.order("RAND()").limit(6)
   end
 
   def edit
-    @recommends = Post.where('id >= ?', rand(Post.first.id..Post.last.id)).limit(6)
+    @recommends = Post.order("RAND()").limit(6)
   end
   
   def update
@@ -17,7 +17,7 @@ class Public::OwnersController < ApplicationController
       flash[:notice] = "プロフィールの更新に成功しました！"
       redirect_to owner_path(@owner)
     else
-      @recommends = Post.where('id >= ?', rand(Post.first.id..Post.last.id)).limit(6)
+      @recommends = Post.order("RAND()").limit(6)
       render :edit
     end
   end
@@ -25,7 +25,7 @@ class Public::OwnersController < ApplicationController
   def withdrawal_confirmation
     @owner = Owner.find_by(id: params[:id])
 
-    @recommends = Post.where('id >= ?', rand(Post.first.id..Post.last.id)).limit(6)
+    @recommends = Post.order("RAND()").limit(6)
   end
   
   def withdrawal
