@@ -25,7 +25,7 @@ class Public::OwnersController < ApplicationController
   def withdrawal_confirmation
     @owner = Owner.find_by(id: params[:id])
 
-    @randoms = Post.where('id >= ?', rand(Post.first.id..Post.last.id).limit(6)
+    @randoms = Post.where('id >= ?', rand(Post.first.id..Post.last.id)).limit(6)
   end
   
   def withdrawal
