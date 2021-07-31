@@ -5,7 +5,7 @@ class Public::OwnersController < ApplicationController
   def show
     @owner = Owner.find(params[:id])
 
-    @ = Post.where('id >= ?', rand(Post.first.id..Post.last.id)).limit(6)
+    @recommends = Post.where('id >= ?', rand(Post.first.id..Post.last.id)).limit(6)
   end
 
   def edit
