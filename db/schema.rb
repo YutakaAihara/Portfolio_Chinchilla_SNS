@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_29_065746) do
+ActiveRecord::Schema.define(version: 2021_08_04_164044) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2021_07_29_065746) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_chinchillas_on_owner_id"
+  end
+
+  create_table "communities", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "community_members", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "favorite_chinchillas", force: :cascade do |t|
@@ -85,6 +95,7 @@ ActiveRecord::Schema.define(version: 2021_07_29_065746) do
     t.string "image_id"
     t.text "introduction"
     t.boolean "join_status", default: true
+    t.boolean "community_reader", default: false
     t.index ["email"], name: "index_owners_on_email", unique: true
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  namespace :public do
+    get 'community/index'
+  end
   devise_for :owners, controllers: {
     sessions:      'owners/sessions',
     passwords:     'owners/passwords',
