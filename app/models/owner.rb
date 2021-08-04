@@ -11,6 +11,9 @@ class Owner < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorite_posts, dependent: :destroy
   has_many :favorite_chinchillas, dependent: :destroy
+  has_many :community_members
+  has_many :communities, through: :community_members
+  has_many :community_messages, dependent: :destroy
   attachment :image
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

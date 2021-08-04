@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
   
-  namespace :public do
-    get 'community/index'
-  end
   devise_for :owners, controllers: {
     sessions:      'owners/sessions',
     passwords:     'owners/passwords',
@@ -61,6 +58,11 @@ Rails.application.routes.draw do
       resources :question_comments, only: [:create, :destroy]
     end
     patch 'solved' => 'questions#solved'
+    
+    resources :communities
+    resources :community_members, only: [:create, :destroy]
+    resources :comunity_messages, only: [:new, :create, :edit, :update, :destroy]
+    
     
     get   'contact' => 'contacts#new' 
     post  'contact/confirm' => 'contacts#confirm' 
