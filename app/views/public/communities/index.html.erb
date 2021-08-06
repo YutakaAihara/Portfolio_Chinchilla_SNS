@@ -1,2 +1,17 @@
-<h1>Public::Communities#index</h1>
-<p>Find me in app/views/public/communities/index.html.erb</p>
+<h1>コミュニティ</h1>
+<%= link_to "コミュニティを作る", new_community_path, class: "btn btn-outline-primary btn-sm mt-2 mb-2" %>
+<div class="posts d-flex d-flex justify-content-around  flex-wrap">
+  <% @communities.each do |community| %>
+    <div class="index-post-card px-2 mt-2">
+      <div class="index-post-image mt-2">
+        <%= link_to community_path(community) do %>
+          <%= attachment_image_tag community, :image, :fill, 150, 150, fallback: asset_path("pf-images/photo_noimage.png"), size: "150x150", class: "index-post-image" %>
+        <% end %>
+      </div>
+      <div class="index-post-title ml-1 mt-2">
+        <strong><%= link_to "#{community.name}", community_path(community) %></strong>
+      </div>
+    </div>
+  <% end %>
+  <%= paginate @communities %>
+</div>
