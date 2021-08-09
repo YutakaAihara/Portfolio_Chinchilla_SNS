@@ -5,23 +5,23 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.page(params[:page]).reverse_order
     
-    @recommends = Post.order("RANDOM()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
+    @recommends = Post.order("RAND()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
   end
 
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
     
-    @recommends = Post.order("RANDOM()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
+    @recommends = Post.order("RAND()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
   end
 
   def new
     @post = Post.new
 
-    @recommends = Post.order("RANDOM()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
+    @recommends = Post.order("RAND()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
   end
   
   def create
@@ -30,15 +30,15 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "投稿に成功しました！"
       redirect_to post_path(@post)
     else
-      @recommends = Post.order("RANDOM()").limit(6)
-      @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
+    @recommends = Post.order("RAND()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
       render :new
     end
   end
 
   def edit
-    @recommends = Post.order("RANDOM()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
+    @recommends = Post.order("RAND()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
   end
   
   def update
@@ -46,8 +46,8 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "投稿の更新に成功しました！"
       redirect_to post_path(@post)
     else
-      @recommends = Post.order("RANDOM()").limit(6)
-      @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
+    @recommends = Post.order("RAND()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
       render :edit
     end
   end
