@@ -1,4 +1,4 @@
-<div class="top-contents container-fluid">
+<div class="d-none d-lg-block top-contents container-fluid">
   <div class="row">
     <div class="top-left col-lg-5">
       <div class="side-logo">
@@ -26,5 +26,26 @@
       </div>
 
     </div>
+  </div>
+</div>
+
+<div class="smart-top d-block d-lg-none text-center pt-5">
+  <div class="center-logo mt-5 mb-5 pt-5 pb-5">
+    <%= image_tag asset_path("pf-images/logo.png"), width: "70%", height: "70%", class: "mt-5 mb-5" %> 
+  </div>
+  <h1 class="mb-5"><strong>チンチラが幸せになるSNS</strong></h1>
+  <p class="mb-5" style="font-size: 2rem;">
+    世界中のチンチラが幸せになるためのSNSです。<br>
+    チンチラさんの日常を投稿できるほか、<br>
+    チンチラさんを診てくれる病院を紹介したり、<br>
+    コミュニティを作って、情報交換できたりします。<br><br>
+    チンチラを飼っている方も、チンチラに興味がある方も<br>
+    ぜひ登録してみてください！
+  </p>
+  <div class="d-flex align-items-center justify-content-center ">
+    <a class="signup btn btn-success btn-lg mr-3" type="button" data-toggle="modal" data-target="#signUpModal">アカウント作成</a>
+    
+    
+    <a class="signin btn btn-outline-success btn-lg ml-3" type="button" data-toggle="modal" data-target="#logInModal">ログイン</a>
   </div>
 </div>
