@@ -40,7 +40,9 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "投稿の更新に成功しました！"
       redirect_to post_path(@post)
     else
+
      @recommends = Post.order("RANDOM()").limit(6)
+
       render :edit
     end
   end

@@ -19,7 +19,9 @@ class Public::HospitalsController < ApplicationController
   def new
     @hospital = Hospital.new
 
-   @recommends = Post.order("RANDOM()").limit(6)
+
+    @recommends = Post.order("RANDOM()").limit(6)
+
   end
   
   def create
@@ -28,7 +30,9 @@ class Public::HospitalsController < ApplicationController
       flash[:notice] = "病院のレビューが投稿されました！"
       redirect_to hospital_path(@hospital)
     else
+
       @recommends = Post.order("RANDOM()").limit(6)
+
       render :new
     end
   end
@@ -42,7 +46,9 @@ class Public::HospitalsController < ApplicationController
       flash[:notice] = "レビューの更新に成功しました！"
       redirect_to hospital_path(@hospital)
     else
+
       @recommends = Post.order("RANDOM()").limit(6)
+
       render :edit
     end
   end

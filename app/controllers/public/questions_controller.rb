@@ -14,7 +14,9 @@ class Public::QuestionsController < ApplicationController
       flash[:notice] = "相談を投稿しました！"
       redirect_to question_path(@question)
     else
+
       @recommends = Post.order("RANDOM()").limit(6)
+
       @questions = Question.all
       render :index
     end
