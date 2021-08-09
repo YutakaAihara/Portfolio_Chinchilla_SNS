@@ -11,7 +11,7 @@
           <%= attachment_image_tag @post.chinchilla, :image, :fill, 50, 50, fallback: "pf-images/photo_noimage.png", size: "50x50", class: "post-chinchilla-image" %>
           <span><%= @post.chinchilla.name %>ちゃんの投稿</span>
         <% end %>
-            <div class="d-flex justify-content-end mt-3">
+            <div class="d-flex justify-content-end mt-3 mr-5">
               <span class="mr-3 favorite-post-<%= @post.id %>">
                 <%= render "public/favorite_posts/favorite", { post: @post } %>          
               </span>
@@ -34,7 +34,7 @@
   
   <div class="new-comment ml-5 mt-5">
     <h4>コメントする</h4>
-    <%= render "public/post_comments/comment_form", { post: @post, post_comment: @post_comment } %> 
+    <%= render "public/post_comments/comment_form", { post: @post, post_comment: @post_comment } %>
   </div>
   
 

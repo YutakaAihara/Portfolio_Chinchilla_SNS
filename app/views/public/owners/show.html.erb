@@ -43,7 +43,6 @@
                             <%= link_to chinchilla_path(chinchilla) do %>
                                 <%= chinchilla.name %>
                             <% end %>
-                        <span class="owner-chinchilla-follower">フォロワー <%= chinchilla.favorite_chinchillas.count %>人</sapn>
                         <% if @owner == current_owner %>
                                 <%= link_to "編集", edit_chinchilla_path(chinchilla), class: "btn btn-sm btn-outline-success mr-2" %>
                                 <%= link_to "削除", chinchilla_path(chinchilla), method: :delete, class: "btn btn-sm btn-outline-danger" %>

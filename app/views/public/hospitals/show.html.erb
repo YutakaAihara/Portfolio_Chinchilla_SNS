@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-6 hospital-detail">
+    <div class="col-6 hospital-detail">
         <div class="detail-hosptal-name mb-3 pb-3">
           <h3><%= @hospital.hospital_name %></h3>
           <% if @hospital.owner == current_owner %>
@@ -28,7 +28,7 @@
         </div>  
     </div>
     
-    <div class="col-lg-6 map-area">
+    <div class="col-6 map-area">
       <div id='show_map'></div>
     </div>
   </div>

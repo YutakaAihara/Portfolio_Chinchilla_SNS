@@ -6,7 +6,7 @@ class Public::HospitalsController < ApplicationController
     @hospitals = Hospital.page(params[:page]).reverse_order
 
     @recommends = Post.order("RANDOM()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RANDOM()").limit(3)
   end
 
   def show

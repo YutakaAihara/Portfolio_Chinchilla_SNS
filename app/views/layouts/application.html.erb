@@ -31,10 +31,10 @@
       <% elsif admin_signed_in? %>
          <div class="container-fluid">
           <div class="row">
-            <div class="left-bar col-lg-2">
-              <%= render "layouts/admin.navbar" %>
+            <div class="left-bar col-2 text-center sticky-top">
+              <%= render "layouts/admin_navbar" %>
             </div>
-            <div class="center col-lg-10 mt-5">
+            <div class="center col-10 mt-5">
               <%= render partial: 'layouts/notice' %>
               <%= yield %>
             </div>

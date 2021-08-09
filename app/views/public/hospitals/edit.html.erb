@@ -2,7 +2,7 @@
 <%= render "layouts/errors", object: @hospital %>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-6 post-area">
+    <div class="col-6 post-area">
       <%= form_with model: @hospital, url: hospital_path(@hospital), local: true do |f| %>
         <div class="hosptal-name-post mb-3 pb-3">
           <%= f.label :hospital_name, "病院名　" %>
@@ -34,7 +34,7 @@
       <% end %>
     </div>
     
-    <div class="col-lg-6 map-area">
+    <div class="col-6 map-area">
       <div id='map'></div>
     </div>
   </div>

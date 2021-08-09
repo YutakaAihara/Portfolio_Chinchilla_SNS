@@ -31,6 +31,7 @@ class Public::ChinchillasController < ApplicationController
 
   def show
     @chinchilla = Chinchilla.find(params[:id])
+    @posts = @chinchilla.posts.page(params[:page]).reverse_order
     
     @recommends = Post.order("RANDOM()").limit(6)
     @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)

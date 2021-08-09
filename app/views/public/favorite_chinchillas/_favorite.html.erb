@@ -1,9 +1,9 @@
 <% if chinchilla.favorited_by?(current_owner) %>
       <%= link_to chinchilla_favorite_chinchillas_path(chinchilla), method: :delete, remote: true do %>
-        ♥　<%= chinchilla.favorite_chinchillas.count %> 人
+        お気に入り　<%= chinchilla.favorite_chinchillas.count %> 人
       <% end %>
 <% else %>
       <%= link_to chinchilla_favorite_chinchillas_path(chinchilla), method: :post, remote: true do %>
-        ♡　<%= chinchilla.favorite_chinchillas.count %> 人
+        お気に入り　<%= chinchilla.favorite_chinchillas.count %> 人
       <% end %>
 <% end %>

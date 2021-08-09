@@ -1,3 +1,4 @@
+  <% if question.question_comments.exists? %>
     <% question.question_comments.each do |comment| %>
       <div class="d-flex align-items-center mt-0">
         <div class="d-flex flex-column justyfy-content-center align-items-center">
@@ -22,3 +23,6 @@
         </div>
       </div>
     <% end %>
+  <% else %>
+    <p>まだコメントはありません</p>
+  <% end %>

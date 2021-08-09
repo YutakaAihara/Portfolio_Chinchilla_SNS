@@ -21,20 +21,25 @@
   <% end %>
 </div>
 <div class="question-index mt-5">
-  <% @questions.each do |question| %>
-    <div class="question-info mt-3 pt-3 pl-3 pb-3 pr-3">
-      <div class="question-title">
-        <h3><%= link_to "#{question.question_title}", question_path(question) %></h3>
+  <h3>お悩み一覧</h3>
+  <% if @questions.exists? %>
+    <% @questions.each do |question| %>
+      <div class="question-info mt-3 pt-3 pl-3 pb-3 pr-3">
+        <div class="question-title">
+          <h3><%= link_to "#{question.question_title}", question_path(question) %></h3>
+        </div>
+        <span class="solution mr-3">
+          <% if question.solution_status == true %>
+            <span class="solved">解決済み</span>
+          <% else %>
+            <span class="unsolved">コメント募集中</span>
+          <% end %>
+        </span>
+        <span class="mr-3"><%= question.question_comments.count %>件のコメント</span>
+        <span class="mr-3"><%= question.created_at.strftime('%Y/%m %H:%M') %></span>
       </div>
-      <span class="solution mr-3">
-        <% if question.solution_status == true %>
-          <span class="solved">解決済み</span>
-        <% else %>
-          <span class="unsolved">コメント募集中</span>
-        <% end %>
-      </span>
-      <span class="mr-3"><%= question.question_comments.count %>件のコメント</span>
-      <span class="mr-3"><%= question.created_at.strftime('%Y/%m %H:%M') %></span>
-    </div>
+    <% end %>
+  <% else %>
+    <p>相談はありません</p>
   <% end %>
 </div>
