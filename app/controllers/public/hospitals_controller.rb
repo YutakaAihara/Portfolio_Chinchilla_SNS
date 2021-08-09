@@ -6,6 +6,7 @@ class Public::HospitalsController < ApplicationController
     @hospitals = Hospital.page(params[:page]).reverse_order
 
     @recommends = Post.order("RANDOM()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
   end
 
   def show
@@ -14,12 +15,14 @@ class Public::HospitalsController < ApplicationController
     gon.longitude = @hospital.longitude
     
     @recommends = Post.order("RANDOM()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
   end
 
   def new
     @hospital = Hospital.new
 
     @recommends = Post.order("RANDOM()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
   end
   
   def create
@@ -28,13 +31,15 @@ class Public::HospitalsController < ApplicationController
       flash[:notice] = "病院のレビューが投稿されました！"
       redirect_to hospital_path(@hospital)
     else
-    @recommends = Post.order("RANDOM()").limit(6)
+      @recommends = Post.order("RANDOM()").limit(6)
+      @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
       render :new
     end
   end
 
   def edit
     @recommends = Post.order("RANDOM()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
   end
   
   def update
@@ -42,7 +47,8 @@ class Public::HospitalsController < ApplicationController
       flash[:notice] = "レビューの更新に成功しました！"
       redirect_to hospital_path(@hospital)
     else
-    @recommends = Post.order("RANDOM()").limit(6)
+      @recommends = Post.order("RANDOM()").limit(6)
+      @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
       render :edit
     end
   end

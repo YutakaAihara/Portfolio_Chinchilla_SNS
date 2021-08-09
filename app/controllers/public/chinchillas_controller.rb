@@ -5,13 +5,15 @@ class Public::ChinchillasController < ApplicationController
   def index
     @chinchillas = Chinchilla.page(params[:page]).reverse_order
 
-    @recommends = Post.order("RANDOM()").limit(6)  
+    @recommends = Post.order("RANDOM()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
   end
 
   def new
     @chinchilla = Chinchilla.new
 
-    @recommends = Post.order("RANDOM()").limit(6)  
+    @recommends = Post.order("RANDOM()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
   end
   
   def create
@@ -21,6 +23,7 @@ class Public::ChinchillasController < ApplicationController
       redirect_to chinchilla_path(@chinchilla)
     else
       @recommends = Post.order("RANDOM()").limit(6)
+      @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
       @chinchilla = Chinchilla.new
       render :new
     end
@@ -30,10 +33,12 @@ class Public::ChinchillasController < ApplicationController
     @chinchilla = Chinchilla.find(params[:id])
     
     @recommends = Post.order("RANDOM()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
   end
 
   def edit
     @recommends = Post.order("RANDOM()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
   end
   
   def update
@@ -41,7 +46,8 @@ class Public::ChinchillasController < ApplicationController
       flash[:notice] = "チンチラの情報が更新されました！"
       redirect_to chinchilla_path(@chinchilla)
     else
-    @recommends = Post.order("RANDOM()").limit(6)
+      @recommends = Post.order("RANDOM()").limit(6)
+      @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
       render :edit
     end
   end

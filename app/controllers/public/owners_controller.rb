@@ -4,12 +4,14 @@ class Public::OwnersController < ApplicationController
  
   def show
     @owner = Owner.find(params[:id])
-
+    @favorite_chinchillas = @owner.favorite_chinchillas.page(params[:page]).reverse_order
     @recommends = Post.order("RANDOM()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
   end
 
   def edit
     @recommends = Post.order("RANDOM()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
   end
   
   def update
@@ -17,7 +19,8 @@ class Public::OwnersController < ApplicationController
       flash[:notice] = "プロフィールの更新に成功しました！"
       redirect_to owner_path(@owner)
     else
-    @recommends = Post.order("RANDOM()").limit(6)
+      @recommends = Post.order("RANDOM()").limit(6)
+      @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
       render :edit
     end
   end
@@ -26,6 +29,7 @@ class Public::OwnersController < ApplicationController
     @owner = Owner.find_by(id: params[:id])
 
     @recommends = Post.order("RANDOM()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).limit(3)
   end
   
   def withdrawal

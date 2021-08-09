@@ -71,17 +71,17 @@ body {
 
 // 左サイドバー
 .left-bar{
-    font-size: 1.2em;
+    font-size: 1.1em;
     border-right: 1px solid rgb(216, 179, 146);
-    height: 100;
+    height: 100vh;
 }
 
 
 // 右サイドバー
 .right-bar{
-    font-size: 1.2em;
+    font-size: 1.1em;
     border-left: 1px solid rgb(216, 179, 146);
-    height: 100;
+    height: 100vh;
 }
 
 .admin-navbar{
@@ -99,7 +99,7 @@ body {
 .owner-profile {
     background-color: rgb(216, 179, 146);
     border-radius: 10% / 50%;
-    width: 80%;
+    width: 100%;
     
   .owner-image {
       .owner-photo {
@@ -126,8 +126,8 @@ body {
     position: relative;
     margin: 1.5em 0 1.5em 15px;
     padding: 7px 10px;
-    min-width: 120px;
-    max-width: 800px;
+    min-width: 350px;
+    max-width: 350px;
     font-size: 16px;
     background: rgb(216, 179, 146);
     :before {

@@ -1,61 +1,91 @@
 <div class="container owner-profile mt-auto mb-auto">
-  <div class="row">
-    <div class="col-5 d-flex owner-image justify-content-center">
-        <%= link_to owner_path(@owner) do %>
-          <%= attachment_image_tag @owner, :image, :fill, 200, 200, fallback: asset_path("pf-images/profile_noimage.png"), size: "200x200", class: "owner-photo" %>
-        <% end %>
+    <div class="row">
+        <div class="col-3 owner-image text-right">
+            <%= link_to owner_path(@owner) do %>
+                <%= attachment_image_tag @owner, :image, :fill, 100, 100, fallback: asset_path("pf-images/profile_noimage.png"), size: "100x100", class: "owner-photo" %>
+            <% end %>
+        </div>
+        <div class="col-9 owner-info mt-auto mb-auto text-left">
+            <h3 class="mt-2">
+                <%= @owner.name %>
+                <% if current_owner == @owner %>
+                    <%= link_to "プロフィールを編集する", edit_owner_path(@owner), class: "btn btn-outline-primary btn-sm" %>
+                    <%= link_to "退会する", confirm_unsubscribe_path(@owner), class: "btn btn-outline-secondary btn-sm" %>
+                <% end %>
+            </h3>
+            <div>
+                <i class="fas fa-location-arrow"></i><span> <%= @owner.prefecture %></span>
+                <span><%= @owner.created_at.strftime('%Y年%m月') %>から利用中です</span>
+            </div>
+        </div>
+        <p class="ml-auto mr-auto", style="width: 80%"><%= @owner.introduction %></p>
     </div>
-    <div class="col-7 owner-info mt-auto mb-auto">
-      <h3 class="mt-2 mb-3"><%= @owner.name %></h3>
-      <p ><%= @owner.introduction %></p>
-      <p class="mb-0"><%= @owner.favorite_chinchillas.count %>ひきのチンチラさんをフォローしています</p>
-      <div>
-        <i class="fas fa-location-arrow"></i><span> <%= @owner.prefecture %></span>
-        <span><%= @owner.created_at.strftime('%Y年%m月') %>から利用中です</span>
-      </div>
-        <div class="mt-2 mb-2">
-            <% if current_owner == @owner %>
-                <%= link_to "プロフィールを編集する", edit_owner_path(@owner), class: "btn btn-outline-primary btn-sm" %>
-                <%= link_to "退会する", confirm_unsubscribe_path(@owner), class: "btn btn-outline-secondary btn-sm" %>
+</div>
+
+<div class="owner-chinchilla mt-5 text-center">
+    <div class="owner-chinchilla-head">
+        <h4 class="fas fa-paw mr-3">
+            <%= @owner.name %>さんのチンチラさん
+            <% if @owner == current_owner %>
+                <%= link_to "チンチラさんを追加", new_chinchilla_path, class: "btn btn-sm btn-outline-info ml-1" %>
+            <% end %>
+        </h4>
+    </div>
+    <% @owner.chinchillas.each do |chinchilla| %>
+        <div class="container">
+            <div class="row">
+                <div class="owner-chinchilla-photo col-3 d-flex align-items-center justify-content-end">
+                    <%= attachment_image_tag chinchilla, :image, :fill, 100, 100, fallback: asset_path("pf-images/photo_noimage.png"), size: "100x100", class: "owner-chinchilla-image" %>
+                </div>
+                <div class="owner-chinchilla-info col-9 text-left">
+                    <div class="owner-chinchilla-info-head">
+                        <h5>
+                            <%= link_to chinchilla_path(chinchilla) do %>
+                                <%= chinchilla.name %>
+                            <% end %>
+                        <span class="owner-chinchilla-follower">フォロワー <%= chinchilla.favorite_chinchillas.count %>人</sapn>
+                        <% if @owner == current_owner %>
+                                <%= link_to "編集", edit_chinchilla_path(chinchilla), class: "btn btn-sm btn-outline-success mr-2" %>
+                                <%= link_to "削除", chinchilla_path(chinchilla), method: :delete, class: "btn btn-sm btn-outline-danger" %>
+                        <% end %>
+                        </h5>
+                    </div>
+                    <div class="owner-chinchilla-info-body ">
+                        <p><%= chinchilla.sex %> / <%= chinchilla_old(chinchilla) %>さい / <%= chinchilla.fur_type %></p>
+                        <p>投稿数:<%= chinchilla.posts.count %></p>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    <% end %>
+</div>
+<div class="follow-chinchilla mt-5 text-center">
+    <div class="follow-chinchilla-head">
+        <h4 class="fas fa-paw mr-3">
+            お気に入りのチンチラさん
+        </h4>
+        <div class="chinchillas d-flex d-flex justify-content-around flex-wrap mt-2">
+            <% if @favorite_chinchillas.exists? %>
+                <% @favorite_chinchillas.each do |favorite_chinchilla| %>
+                    <div class="index-chinchilla-card px-2 mb-2">
+                      <div class="index-chinchilla-image mt-2">
+                        <%= link_to chinchilla_path(favorite_chinchilla) do %>
+                          <%= attachment_image_tag favorite_chinchilla.chinchilla, :image, :fill, 150, 150, fallback: asset_path("pf-images/photo_noimage.png"), size: "150x150", class: "index-chinchilla-image" %>
+                        <% end %>
+                      </div>
+                      <div class="index-chinchilla-name ml-1 mt-2 text-left">
+                        <strong><%= link_to "#{favorite_chinchilla.chinchilla.name}", chinchilla_path(favorite_chinchilla.chinchilla) %></strong>
+                      </div>
+                      <div class="index-chinchilla-owner ml-1 mb-1 text-left">
+                        <%= link_to "#{favorite_chinchilla.chinchilla.owner.name}", owner_path(favorite_chinchilla.chinchilla.owner) %>
+                      </div>
+                    </div>
+                <% end %>
+                <%= paginate @favorite_chinchillas %>
+            <% else %>
+                <p>まだお気に入りのチンチラさんはいません</p>
             <% end %>
         </div>
     </div>
-  </div>
-</div>
-
-<div class="owner-chinchilla mt-5">
-  <div class="owner-chinchilla-head d-flex flex-row">
-    <h4 class="fas fa-paw mr-5"><%= @owner.name %>のチンチラさん</h4>
-    <div class="owner-new-chinchilla ">
-      <%= link_to "チンチラさんを追加", new_chinchilla_path, class: "btn btn-sm btn-outline-info" %>
-    </div>
-  </div>
-   <% @owner.chinchillas.each do |chinchilla| %>
-      <div class="owner-chinchillas-plofile d-flex flex-row mt-2 center-block">
-         <div class="owner-chinchilla-photo d-flex align-items-center">
-           <%= attachment_image_tag chinchilla, :image, :fill, 100, 100, fallback: asset_path("pf-images/photo_noimage.png"), size: "100x100", class: "owner-chinchilla-image  mr-3" %>
-         </div>
-         <div class="owner-chinchilla-info d-flex flex-column">
-           <div class="owner-chinchilla-info-head d-flex flex-row">
-             <h5 class="mr-5">
-               <%= link_to chinchilla_path(chinchilla) do %>
-                   <%= chinchilla.name %>
-               <% end %>
-             </h5>
-             <p class="owner-chinchilla-follower ml-5 mr-3">フォロワー <%= chinchilla.favorite_chinchillas.count %></p>
-             <% if @owner == current_owner %>
-               <div class="owner-chinchilla-edit-link">
-                 <%= link_to "編集", edit_chinchilla_path(chinchilla), class: "btn btn-sm btn-outline-success mr-2" %>
-                 <%= link_to "削除", chinchilla_path(chinchilla), method: :delete, class: "btn btn-sm btn-outline-danger" %>
-               </div>
-             <% end %>
-           </div>
-           <div class="owner-chinchilla-info-body">
-             <p><%= chinchilla.sex %> / <%= chinchilla_old(chinchilla) %>さい / <%= chinchilla.fur_type %></p>
-             <p>投稿数:<%= chinchilla.posts.count %></p>
-           </div>
-         </div>
-      </div>
-   <% end %>
 </div>
 
