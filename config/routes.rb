@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   
+  namespace :public do
+    get 'communities/index'
+    get 'communities/new'
+    get 'communities/show'
+    get 'communities/edit'
+  end
   devise_for :owners, controllers: {
     sessions:      'owners/sessions',
     passwords:     'owners/passwords',
