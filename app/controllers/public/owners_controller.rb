@@ -1,17 +1,16 @@
 class Public::OwnersController < ApplicationController
+  include Commons
+  before_action :recommend_posts
+  before_action :same_prefecture_owners
  before_action :move_to_signed_in
  before_action :ensure_owner, only: [:edit, :update]
  
   def show
     @owner = Owner.find(params[:id])
     @favorite_chinchillas = @owner.favorite_chinchillas.page(params[:page]).reverse_order
-    @recommends = Post.order("RANDOM()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RANDOM()").limit(3)
   end
 
   def edit
-    @recommends = Post.order("RAND()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
   end
   
   def update
@@ -19,17 +18,12 @@ class Public::OwnersController < ApplicationController
       flash[:notice] = "プロフィールの更新に成功しました！"
       redirect_to owner_path(@owner)
     else
-    @recommends = Post.order("RAND()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
       render :edit
     end
   end
   
   def withdrawal_confirmation
     @owner = Owner.find_by(id: params[:id])
-
-    @recommends = Post.order("RAND()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
   end
   
   def withdrawal

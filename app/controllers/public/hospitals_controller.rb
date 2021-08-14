@@ -1,28 +1,22 @@
 class Public::HospitalsController < ApplicationController
+  include Commons
+  before_action :recommend_posts
+  before_action :same_prefecture_owners
   before_action :move_to_signed_in
   before_action :ensure_owner, only: [:edit, :update, :destroy]
   
   def index
     @hospitals = Hospital.page(params[:page]).reverse_order
-
-    @recommends = Post.order("RAND()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
   end
 
   def show
     @hospital = Hospital.find(params[:id])
     gon.latitude = @hospital.latitude
     gon.longitude = @hospital.longitude
-    
-    @recommends = Post.order("RAND()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
   end
 
   def new
     @hospital = Hospital.new
-
-    @recommends = Post.order("RAND()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
   end
   
   def create
@@ -31,15 +25,11 @@ class Public::HospitalsController < ApplicationController
       flash[:notice] = "病院のレビューが投稿されました！"
       redirect_to hospital_path(@hospital)
     else
-    @recommends = Post.order("RAND()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
       render :new
     end
   end
 
   def edit
-    @recommends = Post.order("RAND()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
   end
   
   def update
@@ -47,8 +37,6 @@ class Public::HospitalsController < ApplicationController
       flash[:notice] = "レビューの更新に成功しました！"
       redirect_to hospital_path(@hospital)
     else
-    @recommends = Post.order("RAND()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
       render :edit
     end
   end
