@@ -5,8 +5,8 @@ class Public::OwnersController < ApplicationController
   def show
     @owner = Owner.find(params[:id])
     @favorite_chinchillas = @owner.favorite_chinchillas.page(params[:page]).reverse_order
-    @recommends = Post.order("RAND()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
+    @recommends = Post.order("RANDOM()").limit(6)
+    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RANDOM()").limit(3)
   end
 
   def edit

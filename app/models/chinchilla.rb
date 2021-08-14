@@ -16,4 +16,6 @@ class Chinchilla < ApplicationRecord
   def favorited_by?(owner)
     favorite_chinchillas.where(owner_id: owner.id).exists?
   end
+  
+  
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_29_065746) do
+ActiveRecord::Schema.define(version: 2021_08_04_182356) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -31,6 +31,35 @@ ActiveRecord::Schema.define(version: 2021_07_29_065746) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_chinchillas_on_owner_id"
+  end
+
+  create_table "communities", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_id"
+    t.text "introduction"
+    t.integer "reader_id", null: false
+    t.index ["name"], name: "index_communities_on_name", unique: true
+  end
+
+  create_table "community_members", force: :cascade do |t|
+    t.integer "community_id"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["community_id"], name: "index_community_members_on_community_id"
+    t.index ["owner_id"], name: "index_community_members_on_owner_id"
+  end
+
+  create_table "community_messages", force: :cascade do |t|
+    t.integer "community_id"
+    t.integer "owner_id"
+    t.string "message_body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["community_id"], name: "index_community_messages_on_community_id"
+    t.index ["owner_id"], name: "index_community_messages_on_owner_id"
   end
 
   create_table "favorite_chinchillas", force: :cascade do |t|

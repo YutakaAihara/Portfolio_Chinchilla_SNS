@@ -1,19 +1,19 @@
 class Public::ChinchillasController < ApplicationController
+  include Commons
+  before_action :recommend_posts
+  before_action :same_prefecture_owners
   before_action :move_to_signed_in
   before_action :ensure_owner, only: [:edit, :update, :destroy]
   
   def index
     @chinchillas = Chinchilla.page(params[:page]).reverse_order
 
-    @recommends = Post.order("RAND()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
+
   end
 
   def new
     @chinchilla = Chinchilla.new
 
-    @recommends = Post.order("RAND()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
   end
   
   def create
@@ -22,8 +22,7 @@ class Public::ChinchillasController < ApplicationController
       flash[:notice] = "チンチラが増えました！"
       redirect_to chinchilla_path(@chinchilla)
     else
-    @recommends = Post.order("RAND()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
+
       @chinchilla = Chinchilla.new
       render :new
     end
@@ -33,13 +32,11 @@ class Public::ChinchillasController < ApplicationController
     @chinchilla = Chinchilla.find(params[:id])
     @posts = @chinchilla.posts.page(params[:page]).reverse_order
     
-    @recommends = Post.order("RAND()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
+
   end
 
   def edit
-    @recommends = Post.order("RAND()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
+
   end
   
   def update
@@ -47,8 +44,8 @@ class Public::ChinchillasController < ApplicationController
       flash[:notice] = "チンチラの情報が更新されました！"
       redirect_to chinchilla_path(@chinchilla)
     else
-    @recommends = Post.order("RAND()").limit(6)
-    @same_prefecture_owners = Owner.where.not(id: current_owner.id).where(prefecture: current_owner.prefecture).order("RAND()").limit(3)
+
+    
       render :edit
     end
   end
