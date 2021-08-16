@@ -1,31 +1,29 @@
+<div class="random-post mt-1">
+  <p>おすすめの投稿</p>
+  <div class="d-flex flex-wrap justify-content-around">
+    <% if @recommends %>
+      <% @recommends.each do |recommend| %>
+        <%= link_to post_path(recommend) do %>
+          <%= attachment_image_tag recommend, :image, :fill, 80, 80, class: "random-image mt-1 mr-1" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="same-prefecture-owner mt-3">
+  <p>同じ都道府県の主さん</p>
+    <% if @same_prefecture_owners %>
+      <% @same_prefecture_owners.each do |same_prefecture_owner| %>
+        <%= link_to owner_path(same_prefecture_owner) do %>
+          <div class="pb-2">
+            <%= attachment_image_tag same_prefecture_owner, :image, :fill, 30, 30, fallback: asset_path("pf-images/profile_noimage.png"), size: "30x30", style: "border-radius: 50%;"%>
+            <%= same_prefecture_owner.name %>さん
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+</div>
 
 
-    <div class="random-post mt-1">
-      <p>おすすめの投稿</p>
-      <div class="d-flex flex-wrap justify-content-around">
-        <% if @recommends %>
-          <% @recommends.each do |recommend| %>
-            <%= link_to post_path(recommend) do %>
-              <%= attachment_image_tag recommend, :image, :fill, 80, 80, class: "random-image mt-1 mr-1" %>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-    
-    <div class="same-prefecture-owner mt-3">
-      <p>同じ都道府県の主さん</p>
-        <% if @same_prefecture_owners %>
-          <% @same_prefecture_owners.each do |same_prefecture_owner| %>
-            <%= link_to owner_path(same_prefecture_owner) do %>
-              <div class="pb-2">
-                <%= attachment_image_tag same_prefecture_owner, :image, :fill, 30, 30, fallback: asset_path("pf-images/profile_noimage.png"), size: "30x30", style: "border-radius: 50%;"%>
-                <%= same_prefecture_owner.name %>さん
-              </div>
-            <% end %>
-          <% end %>
-        <% end %>
-    </div>
-    
-    
-  
+

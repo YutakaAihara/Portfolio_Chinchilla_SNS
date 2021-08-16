@@ -1,0 +1,18 @@
+<div class="chinchillas d-flex d-flex justify-content-around flex-wrap mt-2">
+  <% chinchillas.each do |chinchilla| %>
+    <div class="index-chinchilla-card px-2">
+      <div class="index-chinchilla-image mt-2">
+        <%= link_to chinchilla_path(chinchilla) do %>
+          <%= attachment_image_tag chinchilla, :image, :fill, 150, 150, fallback: asset_path("pf-images/photo_noimage.png"), size: "150x150", class: "index-chinchilla-image" %>
+        <% end %>
+      </div>
+      <div class="index-chinchilla-name ml-1 mt-2">
+        <strong><%= link_to "#{chinchilla.name}", chinchilla_path(chinchilla) %></strong>
+      </div>
+      <div class="index-chinchilla-owner ml-1 mb-1">
+        <%= link_to "#{chinchilla.owner.name}", owner_path(chinchilla.owner) %>
+      </div>
+    </div>
+  <% end %>
+  <%= paginate chinchillas %>
+</div>
